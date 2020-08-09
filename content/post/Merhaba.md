@@ -26,6 +26,6 @@ Twitter gibi gündelik araçların yanı sıra, bir Google Scholar profilim var.
 
 Genel düzenlemeleri bitirdikten sonra içeriklerle ilgilenmeye başladım. İlk olarak eski [medium](https://medium.com/@Elcin "Medium") postlarımın bazılarını buraya da taşıdım. Bunu yaparken [medium-2-md](https://github.com/gautamdhameja/medium-2-md)'den faydalandım. Tabi postları topluca md'ye çevirdikten sonra, kullandığım tema için de düzenlemem gerekti. Yazıların içine resimleri, YouTube videoları ve Twitleri shortcodes'larla yerleştirdim. 
 
-Bu blog çeşitli araçlar ıbir arada kullandığım, bunları yaparken çeşitli kodlarla haşır neşir olduğum ilk projem diyebilirim. Blogun tabi ki hala eksik yönleri bulunmakta. Zaman geçtikçe bunları iyileştireceğimi düşünüyorum. 
+Bu blog çeşitli araçları bir arada kullandığım, bunları yaparken çeşitli kodlarla haşır neşir olduğum ilk projem diyebilirim. Blogun tabi ki hala eksik yönleri bulunmakta. Zaman geçtikçe bunları iyileştireceğimi düşünüyorum. 
 
 Blogu açarken sorularıma hızlı yanıt bulmamı sağlayan [Emre Yılmaz](https://emre.xyz)'a çok teşekkür ederim. 
