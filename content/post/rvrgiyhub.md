@@ -1,5 +1,5 @@
 ---
-title: "Rvrgiyhub"
+title: "R ve Github"
 date: 2020-12-21T08:32:49+03:00
 hero: "/images/rvegithub.png"
 excerpt: "R'da yeniyiz, yetmez, github'ı da katalım "
