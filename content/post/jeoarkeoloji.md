@@ -14,7 +14,7 @@ authors:
 
 ANAMED geçen yıl olduğu gibi bu yıl da Çevresel Arkeolojii yaz okulu düzenledi. Geçtiğimiz bahar döneminde Vicky hocadan zaten çevresel arkeoloji alıyordum bunu pekiştirmek için bu eğitime de başvurmuştum ve kabul edilmesi halinde Manisa'da Kaymakçı Arkeoloji Projesi'nde uygulamalı bir eğitime gidecektim. Ancak tabi ki herkes gibi pandemi sebebiyle benim planlarım da bozuldu. Eğitime kabul edildim ancak eğitim Kaymakçı'da uygulamalı olmak yerine Koç Üniversitesinin online eğitim platformunda sürdürüldü. Bu eğitimde derslerden birinde verilen kaynakçadaki bir kitap bölümünü sizlerle paylaşacağım. 
 
-**Arkeolojide Temel Yöntemler** kitabından **Jeoarkeoloji ve Paleocoğrafya araştırmalarının Arkeolojideki Yeri** başlıklı bölümü okudum. Kısaca Jeoarkeoloji, jeoloji, coğrafya, paleocoğrafya gibi kavramalrın neye karşılık geldiğini sade bir dille anlatmış **İlhan Kayan**. 
+**Arkeolojide Temel Yöntemler** kitabından **Jeoarkeoloji ve Paleocoğrafya araştırmalarının Arkeolojideki Yeri** başlıklı bölümü okudum. Kısaca Jeoarkeoloji, jeoloji, coğrafya, paleocoğrafya gibi kavramaların neye karşılık geldiğini sade bir dille anlatmış **İlhan Kayan**. 
 
 Yeryüzü bilim coğrafya, yer kabuğu bilimi jeoloji, Yer'in arkeolojik araştırrmalardaki önemini çok anlaşılır bir dille okuyucuya aktarıyor. 
 
