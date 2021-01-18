@@ -21,13 +21,13 @@ Adım adım nasıl yaptığımı paylaşacağım:
 Bilgisayarınızda R ve RStudio yüklü olması gerekiyor. Ya da yüklüyse güncellemeyi unutmayın.
 
 Bilgisayarınızda hangi R sürümü var kontrol etmek için terminali açıp
-```
+```bash
 R -  -version
 ```
 yazmanız yeterli. Gelen cevapta hangi sürüm olduğunu göreceksiniz.
 
 R'ın hangi versiyonunun yüklü olduğunu RStudio'dan da kontrol edebilirsiniz. Bunun içinde RStudio'da 
-```
+```bash
 R.version.string
 ```
 yazmanız yeterli.
@@ -47,7 +47,7 @@ git --version
 
 Eğer bilgisayarınızda git yoksa aşağıdakileri yazarak kurabilrisiniz:
 
-```
+```bash
 brew install git
 ```
 
@@ -55,7 +55,7 @@ Windows için ise şuradaki yöntemleri inceleyebilirsiniz: https://gitforwindow
 
 Ubuntu'da ise şu şekilde kurabilirsiniz:
 
-```
+```bash
 sudo apt-get install git
 ```
 
@@ -63,7 +63,7 @@ sudo apt-get install git
 
 Önce git'e kendinizi aşağıdaki şekilde tanıtın. Bu işlem için github'daki e-posta adresinizi kullanın.
 
-```
+```bash
 git config --global [user.name](<http://user.name/>) 'Jane Doe'
 git config --global user.email 'jane@example.com'
 git config --global --list
@@ -79,13 +79,13 @@ Eğer iki bilgisayarınız ve tek bir github hesabınız varsa ve her iki bilgis
 
 Çekmek için öncelikle github'da yeni açtığım reponun (myrepo) anasayfasındaki yeşil "Code" düğmesine tıklayıp, oradaki https bağlantısını kopyalıyorum. Kopyaladığım https linkini şöyle çalıştırıyorum:
 
-```
+```bash
 git clone https://...
 ```
 
 Daha sonra ilgili klasöre gidip baktığınızda github'da myrepo altında bulunan dosyalarınız gelmiş olduğunu göreceksiniz. Bu klasöre bakmak için doğrudan gidip klasörlerini kontrol edebilirsiniz. Ancak bunun yanı sıra terminale şunları yazarak da bu reponun içindekileri kontrol edebilirsiniz:
 
-```
+```bash
 cd myrepo
 ls
 ```
@@ -104,7 +104,7 @@ ls
 ------
 
 Şimdi ise şunu yapacağız. Gelen dosyalardaki değişiklikleri github'daki dosyalara da göndereceğiz. Yani githubdaki master branch'ı localde (yani bilgisayarımızda) yaptığımız değişikliklerle güncel tutma işini nasıl yapacağımızı deneyerek öğrenelim. Normalde terminalden 
-```
+```bash
 git push origin master
 ```
 yazmanız bu işe yarıyor. Ancak bu çalışmada daha çok R ve RStudio odaklı olacağız. 
@@ -113,41 +113,41 @@ yazmanız bu işe yarıyor. Ancak bu çalışmada daha çok R ve RStudio odaklı
 
 README.txt içinde değişiklik yapmamın bir yolu dosyayı açıp bir metin editöründe içine bir şeyler yazabilirim. Ancak bunu yapmayacağım. Bunun yerine, terminalde yazdıklarımı echo ile dosyanın içine yazdıracağım. Bununla ilgili detaylı bilgiyi Emre'nin şu (https://emre.xyz/unix-girdi-cikti-yonlendirme) yazısından okuyabilirsiniz. Ancak ben sadece nasıl yapıldığını göstereceğim.
 
-```
+```bash
 echo "The first update from mac mini." >> README.md
 ```
 
 echo ile >>README.md dosyası içine bu cümleyi yazdım. Şimdi bu değişiklikleri kontrol edeceğim. Git değişiklik var mı yok mu bana söyleyecek. Bunun için şunu yazıyorum:
-```
+```bash
 git status
 ```
 git bana dosyanın modified olduğunu belirtti. Bundan sonraki adım bu dosyayı github'a göndermek ve master branch altında birleştirmek.
 
 github'a (Yayın evindeki kitap olsun mesela) yaptığımız değişiklikleri kuryeyle gönderdiğimizi düşünelim. Kuryeye sadece değişiklik yaptığımız sayfayı verebiliriz, kuryeye değişiklikle birlikte tüm kitabı verebiliriz vb.. github'a çeşitli detaylarla dosyayı göndermemiz mümkün bunları aşağıdaki kodlarla yapabiliriz: 
 
-```
+```bash
 add -A
 ```
 kurye kardeş bul değişiklikleri al götür, ( okuyucunun görmeyeceği duvara yapıştırılmış kitap yazarken kullanılan post-itler de buna dahil)
 
-```
+```bash
 git add dosya_adi
 ```
 kurye kardeş değişiklikler bunlar, bu sayfaları götür.
 
-```
+```bash
 git add *
 ```
 kuryeci değişikliklerin hepsini götür ama duvardaki post-itler kalsın
 
 Tabi kuryeye taşıdığı yük hakkında bir de irsaliye vereceğiz; aşağıdaki kodla:
 
-```
+```bash
 git commit -m "A commit from my local-mac mini"
 ```
 Kurye artık yola çıkabilir!
 
-```
+```bash
 git push
 ```
 Aa! o da nesi! Şimdi github hesabımda kullandığım kullanıcı adımı ve şifremi gireceğim ve sonra lokal güncellemelerim githuba gidecek.
@@ -179,43 +179,43 @@ Sonra da R ve RStudio'ya sıra gelecek.
 Bu kapıyı çalmadan gelip gitme olayı için şurada yazan yönergeleri (https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/connecting-to-github-with-ssh) takip edeceğiz.
 
 1-) Elimizde hiç githuba verecek anahtar var mı hemen bir kontrol edelim:
-```
+```bash
 cat ~/.ssh/id_rsa.pub
 ```
 Sonuçta "No such file or directory" diyorsa anahtarımız yok demek. Hemen çilingire gitmiyoruz. Kendimiz üretebiliyoruz. Nasıl yapıyoruz:
-```
+```bash
 ssh-keygen -t rsa
 ```
 yazıyoruz ve evet evet diye diye anahtarı ürettiriyoruz.
 
 sonra anahtar geldi mi hemen kontrol edelim tekrar:
-```
+```bash
 cat ~/.ssh/id_rsa.pub
 ```
 bunun sonucunda bize ;
-```
+```bash
 ssh-rsa XYZXYZXYZABCABC...........KLMKLM...... PRTPRT....MNOMNO.....ZXYZXYZABCABC...........KLMKLM...... PRTPRT....MNOMNO.....ZXYZXYZABCABC...........KLMKLM...... PRTPRT....MNOMNO.....ZXYZXYZABCABC...........KLMKLM...... PRTPRT....MNOMNO.....
 ```
 gibi bir şey verecek. Bu anahtar işte. Bu ürettiğimiz anahtarı sadece github'la seviyeli bir ilişki için kullanacağız. Hemen https://github.com/settings/keys adresine gideceğiz. SSH key lere bakacağız. Yeşil New SSH Key düğmesine tıklayacağız. Bu anahtarımızı yapıştıracağız. Ve ta taa... Bilgisayarımız ve github hesabımız bağlandı. Artık bize hiçbir işlemde şifre sormayacak.
 
 Peki önceki myrepo'da kullandığımız HTTPS ayarı ne olacak? myrepo (ya da hangi isimle açtıysanız) klasörünüzün içinde terminalden
-```
+```bash
 cat .git/config
 ```
 komutunu çalıştırdığınız zaman HTTPS ayarlarını da göreceksiniz. Bunlara manuel müdahale de edebilirsiniz. Ancak biz temiz çalışmayı prensip edineceğimiz için böyle işler yapmayacağız. Ne yapacağız peki?
 
 1-) Aşağıdaki komutu yazıp reponun remote origin adresini sileceğiz:
-```
+```bash
 git remote remove origin
 ```
 Bir de şu aşağıdakini yazıp iyice emin olalım:
-```
+```bash
 git remote -v
 ```
 2-) myrepo'nun originini sildik. Şimdi yeni originini ekleyeceğiz. Bunun için github'a gidiyoruz, ilgili repoya giriyoruz, yeşil "Code" düğmesine tıklıyoruz, SSH'yi seçiyoruz, oradaki linki kopyalıyoruz.
 
 3-) Geliyoruz terminale, aşağıdaki komutu çalıştırıp yeni origini ekliyoruz:
-```
+```bash
 git remote add origin git@github.com:kullanıcıadi/myrepo.git
 ```
 Evet bu dosyanın erişim ayarlarını da düzelttik. Şimdi konumuz olan R ve RStudio'ya dönebiliriz.
@@ -233,7 +233,7 @@ Sağ üstteki kutunun üstünde Environment, History, Connections, Git ve Tutori
 Lokal repomuzla github repomuzu birbirine denkleştireceğiz. github'a gidip bir repo açıyoruz. Bu reponun SSH adresini (Code yazan yeşil buton-SSH) kopyalıyoruz. Bundan sonra takip edilebilecek iki yol var. Biri terminalde diğeri ise RStudio'da. Ben şimdi RStudio'daki yöntemi takip edeceğim.
 
 Sağ üstteki Git kutusunun orda iki mor, bir beyaz dikdörtgenden oluşan bir buton var. Remote oluşturmaya yarıyor. Tıklıyoruz bu kutuya. Add remote düğmesine tıklıyoruz. İsim veriyoruz, SSH linkini yapıştırıyoruz ve ok diyoruz. Bize şöyle bir yanıt verecek :
-```
+```bash
 > > > /usr/bin/git checkout -B branch Switched to a new branch 'branch'
 >
 > > > /usr/bin/git push -u testhub branch remote: remote: Create a pull request for 'branch' on GitHub by visiting: remote: https://github.com/kullaniciadi/testrepo/pull/new/branch remote: To [github.com](http://github.com/):kullaniciadi/testrepo.git

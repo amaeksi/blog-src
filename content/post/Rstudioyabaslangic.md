@@ -5,6 +5,7 @@ hero: "/images/nane.jpg"
 excerpt: Dosyayı nereye kaydettik şimdi!!!  
 authors:
   - Hugo Authors
+draft: true
 ---
 
 R Studio'ya hızlıca bir bakalım. R studio'yu açtığınızda karşınızda 4 tane pencere göreceksiniz. Biri R merhaba 
