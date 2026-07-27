@@ -16,5 +16,9 @@
       <a href="#kaynaklar">Kaynaklar</a>
     </nav>
     {{ .Content }}
+    <section class="guide-cta" aria-label="Atölye kayıtları">
+      <p>Yeni atölye tarihlerini ilk sen öğren.</p>
+      {{ partial "registration-cta.html" (dict "label" "Yeni tarihleri ilk sen öğren") }}
+    </section>
   </article>
 {{ end }}

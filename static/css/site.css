@@ -185,6 +185,8 @@ h3 { font-size: clamp(1.2rem, 2vw, 1.45rem); }
 .guide-header h1 { margin-bottom: .8rem; }
 .guide-nav { display: flex; flex-wrap: wrap; gap: .45rem; margin: 0 0 3rem; padding: 1rem 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
 .guide-nav a { padding: .25rem .45rem; color: var(--dark-soft); font-size: .82rem; font-weight: 700; }
+.guide-cta { margin-top: 3rem; padding: 1.5rem; border: 1px solid var(--border); background: var(--surface); }
+.guide-cta p { margin-bottom: .9rem; font-weight: 700; }
 .private-guide { background: #f8f4e9; }
 
 .site-footer { border-top: 1px solid var(--border); }
