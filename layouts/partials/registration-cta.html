@@ -1,0 +1,6 @@
+{{ $label := .label | default "Yeni tarihleri ilk sen öğren" }}
+{{ with site.Data.links.registration_form }}
+  <a class="button button--turmeric" href="{{ . }}" target="_blank" rel="noopener noreferrer">{{ $label }}<span aria-hidden="true"> ↗</span></a>
+{{ else }}
+  <span class="button button--turmeric button--disabled" aria-disabled="true" title="Kayıt bağlantısı yakında eklenecek">{{ $label }}<small>Kayıt bağlantısı yakında</small></span>
+{{ end }}

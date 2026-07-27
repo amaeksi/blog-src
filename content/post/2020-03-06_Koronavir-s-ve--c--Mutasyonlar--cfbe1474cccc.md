@@ -5,6 +5,8 @@ hero: "/images/coronavirus-mutasyon.png"
 excerpt: Koronavirüs mutasyon mu geçiriyor? Bu mutasyonlar ne anlama geliyor? Mutasyon öcü mü? Virüs canlı mı cansız mı? Cevaplar burada!
 authors:
   - Hugo Authors
+aliases:
+  - /post/2020-03-06_koronavir-s-ve-c-mutasyonlar-cfbe1474cccc/
 
 
 ---

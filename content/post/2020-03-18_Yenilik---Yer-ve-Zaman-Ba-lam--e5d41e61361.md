@@ -5,6 +5,8 @@ hero: "/images/respirator.jpeg"
 excerpt: İnovasyon toplantılarından Covid-19 salgınına 
 authors:
   - Hugo Authors
+aliases:
+  - /post/2020-03-18_yenilik-yer-ve-zaman-ba-lam-e5d41e61361/
 
 
 ---

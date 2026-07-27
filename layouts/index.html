@@ -1,0 +1,65 @@
+{{ define "main" }}
+  <section class="home-hero">
+    <div class="home-hero__copy">
+      <p class="eyebrow">Elçin Ekşi</p>
+      <h1>Biyoloji, doğa gözlemi ve yaratıcı öğrenmenin kesişiminde projeler üretiyorum.</h1>
+      <p class="lead">Bilimsel merakı; doğayı gözlemleme, öğrenme ve yaratıcı üretim yöntemleriyle bir araya getiren çalışmalar yapıyorum.</p>
+      <div class="button-row">
+        <a class="button button--dark" href="{{ `/gunesimden-kac/` | relURL }}">Güneşimden Kaç</a>
+        <a class="text-link" href="{{ `/hakkimda/` | relURL }}">Hakkımda <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+    <figure class="home-hero__image">
+      <img src="{{ `/images/elcin-arazi.jpg` | relURL }}" width="700" height="466" alt="Elçin Ekşi doğada" fetchpriority="high">
+    </figure>
+  </section>
+
+  <section class="section section--project">
+    <div class="section__heading">
+      <p class="eyebrow">Öne çıkan proje</p>
+      <h2>Güneşimden Kaç</h2>
+    </div>
+    <div class="project-callout">
+      <p class="project-callout__line">Güneş, bitkiler ve zamanın birlikte ürettiği izler.</p>
+      <p>Bir biyoloğun yönettiği yaratıcı doğa laboratuvarı. Kuşadası’nda yetişkinler için doğa gözlemi, bitkiler ve yavaş üretim etrafında buluşmalar.</p>
+      {{ partial "registration-cta.html" (dict "label" "Yeni tarihleri ilk sen öğren") }}
+    </div>
+  </section>
+
+  <section class="section section--two-column">
+    <div>
+      <p class="eyebrow">Kısaca</p>
+      <h2>Merakın peşinden, dikkatle.</h2>
+    </div>
+    <div class="prose">
+      <p>Ekoloji, evrim ve canlı çeşitliliğiyle ilgileniyorum. Araştırma deneyimini bilim iletişimi, eğitim materyalleri ve doğa gözlemiyle buluşturan işlere değer veriyorum.</p>
+      <a class="text-link" href="{{ `/hakkimda/` | relURL }}">Hikâyenin tamamı <span aria-hidden="true">→</span></a>
+    </div>
+  </section>
+
+  <section class="section section--work">
+    <p class="eyebrow">Geçmiş çalışmalar</p>
+    <div class="work-grid">
+      <article><h2>Bilim iletişimi</h2><p>Bilimsel içerik üretimi, öğrenme deneyimleri ve çocuklar için materyal tasarımı.</p></article>
+      <article><h2>Araştırma</h2><p>Ekoloji, evrim, vektörler, antik DNA ve Anadolu biyoçeşitliliği üzerine deneyimler.</p></article>
+      <article><h2>Topluluk</h2><p>Birlikte öğrenme ve paylaşma fikrini büyüten bilim topluluklarıyla ortak geçmiş.</p></article>
+    </div>
+  </section>
+
+  <section class="section latest-posts">
+    <div class="section__heading section__heading--row">
+      <div><p class="eyebrow">Arşivden</p><h2>Yazılar</h2></div>
+      <a class="text-link" href="{{ `/yazilar/` | relURL }}">Tüm yazılar <span aria-hidden="true">→</span></a>
+    </div>
+    <div class="post-grid">
+      {{ $posts := sort (where site.RegularPages "Section" "post") "Date" "desc" }}
+      {{ range first 3 $posts }}
+        <article class="post-card">
+          <p class="post-card__date">{{ .Date.Format "2006" }}</p>
+          <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+          <p>{{ .Params.excerpt | default .Summary | plainify | truncate 150 }}</p>
+        </article>
+      {{ end }}
+    </div>
+  </section>
+{{ end }}

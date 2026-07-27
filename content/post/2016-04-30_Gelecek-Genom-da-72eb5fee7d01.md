@@ -5,6 +5,8 @@ hero: "/images/1____WjJemcghlSwB6MNmg__v__g.jpeg"
 excerpt: Genom teknolojilerinin geçmişini ve geleceği nasıl şekillendirecğeini anlattım.  
 authors:
   - Hugo Authors
+aliases:
+  - /post/2016-04-30_gelecek-genom-da-72eb5fee7d01/
 
 
 ---

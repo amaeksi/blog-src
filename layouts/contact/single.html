@@ -1,0 +1,15 @@
+{{ define "main" }}
+  <article class="page-shell prose contact-page">
+    <header class="page-header">
+      <p class="eyebrow">Bağlantılar</p>
+      <h1>{{ .Title }}</h1>
+      <p class="lead">{{ .Description }}</p>
+    </header>
+    {{ .Content }}
+    <ul class="contact-links" aria-label="İletişim bağlantıları">
+      {{ with site.Data.links.instagram }}<li><a href="{{ . }}" target="_blank" rel="me noopener noreferrer">Instagram <span aria-hidden="true">↗</span></a></li>{{ end }}
+      {{ with site.Data.links.google_scholar }}<li><a href="{{ . }}" target="_blank" rel="noopener noreferrer">Google Scholar <span aria-hidden="true">↗</span></a></li>{{ end }}
+      {{ with site.Data.links.email }}<li><a href="mailto:{{ . }}">E-posta</a></li>{{ end }}
+    </ul>
+  </article>
+{{ end }}

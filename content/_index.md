@@ -1,8 +1,4 @@
 ---
-hero:
-  heading: Yaşam bilimlerinin hayatla buluştuğu blog.
-  maxWidthPX: 352
-seo:
-  image: /images/elcin-arazi.jpg
+title: "Elçin Ekşi"
+description: "Biyoloji, doğa gözlemi ve yaratıcı öğrenmenin kesişiminde projeler."
 ---
-

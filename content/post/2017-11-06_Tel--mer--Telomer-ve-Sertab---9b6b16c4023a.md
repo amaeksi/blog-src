@@ -5,6 +5,8 @@ hero: "/images/telomer.png"
 excerpt: Yeni duydum bu olayı. Meğersem kaç gündür ortalık bunlardan yıkılıyormuş. Tabi ana akım medya takip etmeyince böyle uzak kalıyorum… 
 authors:
   - Hugo Authors
+aliases:
+  - /post/2017-11-06_tel-mer-telomer-ve-sertab-9b6b16c4023a/
 
 
 ---

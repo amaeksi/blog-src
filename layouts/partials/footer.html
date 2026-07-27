@@ -1,10 +1,9 @@
-<div class="footer-gradient"></div>
-    <div class="section narrow">
-      <div class="footer-hr"></div>
-      <div class="footer-container">
-        <div class="footer-text">
-          © {{ dateFormat "2006" now }} {{ .Site.Title }}
-        </div>
-        {{ partial "social-links/social-links.html" . }}
-    </div>
-</div>
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <p>© {{ now.Year }} Elçin Ekşi</p>
+    <nav aria-label="Dış bağlantılar" class="footer-links">
+      {{ with site.Data.links.instagram }}<a href="{{ . }}" rel="me noopener noreferrer" target="_blank">Instagram</a>{{ end }}
+      {{ with site.Data.links.google_scholar }}<a href="{{ . }}" rel="noopener noreferrer" target="_blank">Google Scholar</a>{{ end }}
+    </nav>
+  </div>
+</footer>

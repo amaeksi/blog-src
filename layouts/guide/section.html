@@ -1,0 +1,24 @@
+{{ define "main" }}
+  <article class="guide-shell prose">
+    <header class="guide-header">
+      <p class="eyebrow">Güneşimden Kaç I</p>
+      <h1>Işığın Rengi</h1>
+      <p class="guide-header__line">Güneş, bitkiler ve zamanın birlikte ürettiği izler.</p>
+      <p>Katılımcı rehberi</p>
+    </header>
+    <nav class="guide-nav" aria-label="Rehber bölümleri">
+      <a href="#bugun-ne-yapiyoruz">Bugün ne yapıyoruz?</a>
+      <a href="#nasil-calisiyor">Nasıl çalışıyor?</a>
+      <a href="#uygulama">Uygulama</a>
+      <a href="#baskinin-bakimi">Baskının bakımı</a>
+      <a href="#gozlem">Gözlem</a>
+      <a href="#bugun-kullandigimiz-bitkiler">Bitkiler</a>
+      <a href="#kaynaklar">Kaynaklar</a>
+    </nav>
+    {{ .Content }}
+    <section class="guide-cta" aria-label="Atölye kayıtları">
+      <p>Yeni atölye tarihlerini ilk sen öğren.</p>
+      {{ partial "registration-cta.html" (dict "label" "Yeni tarihleri ilk sen öğren") }}
+    </section>
+  </article>
+{{ end }}

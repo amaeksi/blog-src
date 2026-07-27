@@ -5,6 +5,8 @@ hero: "/images/1__gv__5Bd__kw15OI5qC53pWtA.jpeg"
 excerpt: Bu yazımı aldığım bir eposta ve bu eposta için verdiğim cevabı daha fazla insanın okuyabilmesi için hazırladım. 
 authors:
   - Hugo Authors
+aliases:
+  - /post/2018-08-29_gelece-i-n-a-etmek-stiyorum-d2bfbcf363c8/
 
 
 ---

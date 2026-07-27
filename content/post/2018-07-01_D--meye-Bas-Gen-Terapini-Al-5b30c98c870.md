@@ -5,6 +5,8 @@ hero: "/images/1__FfD6HGNn78B__MRdDVpqRVw.jpeg"
 excerpt: Risk almak, hata yapmak, yenilikçi düşünmek ve 28 yaşında bir kadın
 authors:
   - Hugo Authors
+aliases:
+  - /post/2018-07-01_d-meye-bas-gen-terapini-al-5b30c98c870/
 
 
 ---

@@ -5,6 +5,8 @@ hero: "/images/corona-belasi.jpeg"
 excerpt:  İlk gün koronavirüsle ilgili yaptıklarımı derleyeceğim. Dönüp baktığımda Ocak ortasından beri aslında yoğun bir mesai harcadığımı görüyorum. 
 authors:
   - Hugo Authors
+aliases:
+  - /post/2020-03-08_g-ne-notlar-1-koronavir-s-belas-6413cd19bbc1/
 
 
 ---

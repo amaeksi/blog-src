@@ -5,6 +5,8 @@ hero: "/images/zika.jpeg"
 excerpt: Kıssadan hisse Doğa Ana’yı üzdünüz, o da sizi üzüyor! 
 authors:
   - Hugo Authors
+aliases:
+  - /post/2016-02-08_her-y-n-yle-zika-ger-e-i-c2054d67d960/
 
 ---
 

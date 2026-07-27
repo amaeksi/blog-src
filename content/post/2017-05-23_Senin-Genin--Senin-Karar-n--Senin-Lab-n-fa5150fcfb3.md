@@ -5,6 +5,8 @@ hero: "/images/1__GfYd__YFOcKtg8__c8iMgARg.jpeg"
 excerpt: KEndi gen terapinizi evde hazırlayabilir misiniz? 
 authors:
   - Hugo Authors
+aliases:
+  - /post/2017-05-23_senin-genin-senin-karar-n-senin-lab-n-fa5150fcfb3/
 
 
 ---

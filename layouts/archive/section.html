@@ -1,0 +1,20 @@
+{{ define "main" }}
+  <section class="page-shell archive">
+    <header class="page-header">
+      <p class="eyebrow">Arşiv</p>
+      <h1>{{ .Title }}</h1>
+      <p class="lead">{{ .Description }}</p>
+    </header>
+    <div class="archive-list">
+      {{ $posts := sort (where site.RegularPages "Section" "post") "Date" "desc" }}
+      {{ range $posts }}
+        <article class="archive-item">
+          <p class="archive-item__date">{{ .Date.Format "2 January 2006" }}</p>
+          <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+          <p>{{ .Params.excerpt | default .Summary | plainify | truncate 220 }}</p>
+          <a class="text-link" href="{{ .RelPermalink }}">Oku <span aria-hidden="true">→</span></a>
+        </article>
+      {{ end }}
+    </div>
+  </section>
+{{ end }}
