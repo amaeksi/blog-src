@@ -1,0 +1,9 @@
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <p>© {{ now.Year }} Elçin Ekşi</p>
+    <nav aria-label="Dış bağlantılar" class="footer-links">
+      {{ with site.Data.links.instagram }}<a href="{{ . }}" rel="me noopener noreferrer" target="_blank">Instagram</a>{{ end }}
+      {{ with site.Data.links.google_scholar }}<a href="{{ . }}" rel="noopener noreferrer" target="_blank">Google Scholar</a>{{ end }}
+    </nav>
+  </div>
+</footer>

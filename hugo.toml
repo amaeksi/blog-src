@@ -1,0 +1,28 @@
+baseURL = "https://elcineksi.com/"
+languageCode = "tr-TR"
+title = "Elçin Ekşi"
+enableRobotsTXT = true
+disableKinds = ["taxonomy", "term", "RSS"]
+
+[pagination]
+  pagerSize = 12
+
+[sitemap]
+  changefreq = "monthly"
+  priority = 0.5
+  filename = "sitemap.xml"
+
+[params]
+  description = "Elçin Ekşi — biyoloji, doğa gözlemi ve yaratıcı öğrenmenin kesişiminde projeler."
+  author = "Elçin Ekşi"
+  defaultImage = "/images/elcin-arazi.jpg"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = false
+    [markup.goldmark.parser.attribute]
+      block = true
+
+[minify]
+  minifyOutput = true

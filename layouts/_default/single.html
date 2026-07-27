@@ -1,0 +1,10 @@
+{{ define "main" }}
+  <article class="page-shell prose">
+    <header class="page-header">
+      <p class="eyebrow">{{ if eq .Section "hakkimda" }}Elçin Ekşi{{ else }}{{ .Section | humanize }}{{ end }}</p>
+      <h1>{{ .Title }}</h1>
+      {{ with .Description }}<p class="lead">{{ . }}</p>{{ end }}
+    </header>
+    {{ .Content }}
+  </article>
+{{ end }}

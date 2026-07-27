@@ -1,0 +1,14 @@
+{{ define "main" }}
+  <section class="project-hero">
+    <div class="project-hero__content">
+      <p class="eyebrow">Kuşadası · yaratıcı doğa atölyeleri</p>
+      <h1>Güneşimden Kaç</h1>
+      <p class="project-hero__line">Güneş, bitkiler ve zamanın birlikte ürettiği izler.</p>
+      <p class="lead">Bir biyoloğun yönettiği yaratıcı doğa laboratuvarı.</p>
+    </div>
+  </section>
+  <article class="page-shell prose project-prose">
+    {{ .Content }}
+    <p><a class="button button--turmeric" href="{{ `/gunesimden-kac/isigin-rengi/` | relURL }}">Işığın Rengi atölyesini keşfet <span aria-hidden="true">→</span></a></p>
+  </article>
+{{ end }}

@@ -1,0 +1,6 @@
+# Google Form hazır olduğunda yalnızca bu alanı güncelleyin.
+# URL boşken kayıt CTA'ları güvenli bir "yakında" durumunda kalır.
+registration_form: ""
+instagram: "https://www.instagram.com/eksielcin/"
+google_scholar: "https://scholar.google.com.tr/citations?user=WNhtRggAAAAJ&hl=tr&oi=ao"
+email: ""
