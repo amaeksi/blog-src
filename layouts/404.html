@@ -1,0 +1,13 @@
+{{ define "main" }}
+  <section class="page-shell prose" aria-labelledby="not-found-title">
+    <header class="page-header">
+      <p class="eyebrow">404</p>
+      <h1 id="not-found-title">Sayfa bulunamadı.</h1>
+      <p class="lead">Aradığın sayfa taşınmış veya artık burada olmayabilir.</p>
+    </header>
+    <p class="button-row">
+      <a class="button button--dark" href="{{ `/` | relURL }}">Ana sayfaya dön</a>
+      <a class="text-link" href="{{ `/yazilar/` | relURL }}">Yazılara göz at →</a>
+    </p>
+  </section>
+{{ end }}

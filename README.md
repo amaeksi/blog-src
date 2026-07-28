@@ -44,11 +44,11 @@ Yeni bir atölye eklemek için `content/gunesimden-kac/` altında yeni bir içer
 
 ## Yayınlama
 
-`.github/workflows/deploy.yml`, `main` dalına gelen push’larda Hugo’yu derler ve resmi GitHub Pages artifact/deploy action’larıyla yayınlar. GitHub deposunda **Settings → Pages → Build and deployment → Source** seçeneğini **GitHub Actions** yapın.
+`.github/workflows/deploy.yml`, `master` dalına gelen push’larda Hugo’yu derler ve resmi GitHub Pages artifact/deploy action’larıyla yayınlar. GitHub deposunda **Settings → Pages → Build and deployment → Source** seçeneğini **GitHub Actions** yapın.
 
 ### Özel alan adı
 
-`static/CNAME` dosyası canonical alan adını `elcineksi.com` olarak taşır. GitHub Pages ayarlarında **Custom domain** alanına `elcineksi.com` yazın, doğrulama tamamlandıktan sonra **Enforce HTTPS** seçeneğini etkinleştirin.
+GitHub Pages özel alan adı **Settings → Pages → Custom domain** alanında `elcineksi.com` olarak yönetilir. Actions dağıtımı bu Pages ayarını kullanır. `static/CNAME` dosyası site çıktısında alan adını koruyan bir uyumluluk dosyasıdır; Actions dağıtımının kaynak ayarı değildir. Doğrulama tamamlandıktan sonra **Enforce HTTPS** seçeneğini etkinleştirin.
 
 DNS sağlayıcısında aşağıdaki kayıtları eklemek kullanıcı tarafında yapılacak işlemdir:
 
