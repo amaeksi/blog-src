@@ -2,11 +2,12 @@
   <section class="home-hero">
     <div class="home-hero__copy">
       <p class="eyebrow">Elçin Ekşi</p>
-      <h1>Biyoloji, doğa gözlemi ve yaratıcı öğrenmenin kesişiminde projeler üretiyorum.</h1>
-      <p class="lead">Bilimsel merakı; doğayı gözlemleme, öğrenme ve yaratıcı üretim yöntemleriyle bir araya getiren çalışmalar yapıyorum.</p>
+      <h1>Biyoloji araştırmaları, biyoteknoloji girişimciliği ve bilim iletişiminin kesişiminde çalışıyorum.</h1>
+      <p class="lead">Ekoloji ve evrimden biyoinformatiğe uzanan bilimsel merakımı; araştırma, teknoloji geliştirme, eğitim ve kamusal bilim iletişimiyle bir araya getiriyorum.</p>
       <div class="button-row">
-        <a class="button button--dark" href="{{ `/gunesimden-kac/` | relURL }}">Güneşimden Kaç</a>
-        <a class="text-link" href="{{ `/hakkimda/` | relURL }}">Hakkımda <span aria-hidden="true">→</span></a>
+        <a class="button button--dark" href="{{ `/akademi/` | relURL }}">Akademik çalışmalar</a>
+        <a class="button button--turmeric" href="{{ `/girisimcilik/` | relURL }}">Girişimcilik</a>
+        <a class="text-link" href="{{ `/bilim-iletisimi/` | relURL }}">Bilim iletişimi <span aria-hidden="true">→</span></a>
       </div>
     </div>
     <figure class="home-hero__image">
@@ -14,9 +15,35 @@
     </figure>
   </section>
 
+  <section class="section section--work home-pillars">
+    <div class="section__heading">
+      <p class="eyebrow">Çalışma alanları</p>
+      <h2>Birbirini besleyen üç hat.</h2>
+    </div>
+    <div class="work-grid">
+      <article><p class="eyebrow">Araştırma</p><h2>Akademik araştırmalar</h2><p>Ekoloji, evrim, biyoçeşitlilik, popülasyonlar ve veri temelli biyoloji etrafındaki araştırma yolculuğum.</p><a class="text-link" href="{{ `/akademi/` | relURL }}">Araştırmalarımı gör <span aria-hidden="true">→</span></a></article>
+      <article><p class="eyebrow">Uygulama</p><h2>Biyoteknoloji & girişimcilik</h2><p>Bilimsel bilgiyi teknolojiye, projeye ve öğrenme deneyimlerine dönüştüren ERES çalışmaları.</p><a class="text-link" href="{{ `/girisimcilik/` | relURL }}">Girişimcilik çalışmalarım <span aria-hidden="true">→</span></a></article>
+      <article><p class="eyebrow">Paylaşım</p><h2>Bilim iletişimi</h2><p>Yazılar, konuşmalar, eğitimler ve bilimsel merakı daha erişilebilir hale getiren tarihsel projeler.</p><a class="text-link" href="{{ `/bilim-iletisimi/` | relURL }}">Bilim iletişimi çalışmalarım <span aria-hidden="true">→</span></a></article>
+    </div>
+  </section>
+
+  <section class="section section--two-column home-now">
+    <div>
+      <p class="eyebrow">Şu anda</p>
+      <h2>Araştırma, eğitim ve doğa arasında.</h2>
+    </div>
+    <div class="prose">
+      <p>Ekoloji, evrim, biyoçeşitlilik ve veri temelli biyoloji üzerine akademik araştırmalarımı sürdürüyorum. ERES Biotechnology’de biyoinformatik ve yaşam bilimleri için öğrenme deneyimleri geliştiriyor; Güneşimden Kaç’ta doğa gözlemiyle yaratıcı üretimi bir araya getiriyorum.</p>
+      <div class="button-row">
+        {{ with site.Data.links.eres }}<a class="text-link" href="{{ . }}" target="_blank" rel="noopener noreferrer">ERES Biotechnology <span aria-hidden="true">↗</span></a>{{ end }}
+        <a class="text-link" href="{{ `/gunesimden-kac/` | relURL }}">Güneşimden Kaç <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </section>
+
   <section class="section section--project">
     <div class="section__heading">
-      <p class="eyebrow">Öne çıkan proje</p>
+      <p class="eyebrow">Güncel yaratıcı proje</p>
       <h2>Güneşimden Kaç</h2>
     </div>
     <div class="project-callout">
@@ -26,23 +53,15 @@
     </div>
   </section>
 
-  <section class="section section--two-column">
-    <div>
-      <p class="eyebrow">Kısaca</p>
-      <h2>Merakın peşinden, dikkatle.</h2>
+  <section class="section home-evidence">
+    <div class="section__heading">
+      <p class="eyebrow">Geçmişten seçilmiş çalışmalar</p>
+      <h2>Somut duraklar</h2>
     </div>
-    <div class="prose">
-      <p>Ekoloji, evrim ve canlı çeşitliliğiyle ilgileniyorum. Araştırma deneyimini bilim iletişimi, eğitim materyalleri ve doğa gözlemiyle buluşturan işlere değer veriyorum.</p>
-      <a class="text-link" href="{{ `/hakkimda/` | relURL }}">Hikâyenin tamamı <span aria-hidden="true">→</span></a>
-    </div>
-  </section>
-
-  <section class="section section--work">
-    <p class="eyebrow">Geçmiş çalışmalar</p>
     <div class="work-grid">
-      <article><h2>Bilim iletişimi</h2><p>Bilimsel içerik üretimi, öğrenme deneyimleri ve çocuklar için materyal tasarımı.</p></article>
-      <article><h2>Araştırma</h2><p>Ekoloji, evrim, vektörler, antik DNA ve Anadolu biyoçeşitliliği üzerine deneyimler.</p></article>
-      <article><h2>Topluluk</h2><p>Birlikte öğrenme ve paylaşma fikrini büyüten bilim topluluklarıyla ortak geçmiş.</p></article>
+      <article><p class="eyebrow">2019 · Geçmiş proje</p><h2>Bilim Kutusu</h2><p>Bilim temelli aktivite kutuları ve STEM öğrenme deneyimleri için geliştirilen bir proje.</p></article>
+      <article><p class="eyebrow">2025 · Konuşma</p><h2>IEEE EMBS WebEd</h2><p>Biyoinformatiğe girişin temel kavramları ve biyomedikal araştırmadaki kullanım alanları üzerine webinar.</p>{{ with site.Data.links.ieee_webed }}<a class="text-link" href="{{ . }}" target="_blank" rel="noopener noreferrer">Etkinliği gör <span aria-hidden="true">↗</span></a>{{ end }}</article>
+      <article><p class="eyebrow">2023 · Tez</p><h2>Anadolu’nun eski memelileri</h2><p>Arkeolojik kayıtlarla yok oluş zamanını istatistiksel olarak inceleyen ODTÜ Arkeometri yüksek lisans çalışması.</p>{{ with site.Data.links.openmetu_thesis }}<a class="text-link" href="{{ . }}" target="_blank" rel="noopener noreferrer">Tezi aç <span aria-hidden="true">↗</span></a>{{ end }}</article>
     </div>
   </section>
 

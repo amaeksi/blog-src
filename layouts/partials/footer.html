@@ -2,8 +2,10 @@
   <div class="site-footer__inner">
     <p>© {{ now.Year }} Elçin Ekşi</p>
     <nav aria-label="Dış bağlantılar" class="footer-links">
-      {{ with site.Data.links.instagram }}<a href="{{ . }}" rel="me noopener noreferrer" target="_blank">Instagram</a>{{ end }}
-      {{ with site.Data.links.google_scholar }}<a href="{{ . }}" rel="noopener noreferrer" target="_blank">Google Scholar</a>{{ end }}
+      {{ with site.Data.links.linkedin }}<a href="{{ . }}" rel="me noopener noreferrer" target="_blank">LinkedIn</a>{{ end }}
+      {{ with site.Data.links.researchgate }}<a href="{{ . }}" rel="me noopener noreferrer" target="_blank">ResearchGate</a>{{ end }}
+      {{ with site.Data.links.medium }}<a href="{{ . }}" rel="me noopener noreferrer" target="_blank">Medium</a>{{ end }}
+      {{ with site.Data.links.github }}<a href="{{ . }}" rel="me noopener noreferrer" target="_blank">GitHub</a>{{ end }}
     </nav>
   </div>
 </footer>

@@ -20,6 +20,18 @@
     <meta name="twitter:title" content="{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} | {{ site.Title }}{{ end }}">
     <meta name="twitter:description" content="{{ .Description | default site.Params.description }}">
     <meta name="twitter:image" content="{{ $image | absURL }}">
+    {{ $person := dict
+      "@context" "https://schema.org"
+      "@type" "Person"
+      "name" "Elçin Ekşi"
+      "url" site.BaseURL
+      "image" (`images/elcin-arazi.jpg` | absURL)
+      "sameAs" (slice site.Data.links.linkedin site.Data.links.researchgate site.Data.links.medium site.Data.links.github)
+      "knowsAbout" (slice "ecology" "evolutionary biology" "biodiversity" "bioinformatics" "molecular ecology" "phylogeography" "population genetics" "biotechnology" "science communication" "biotechnology entrepreneurship")
+      "alumniOf" (slice (dict "@type" "CollegeOrUniversity" "name" "Hacettepe University") (dict "@type" "CollegeOrUniversity" "name" "Middle East Technical University"))
+      "worksFor" (dict "@type" "Organization" "name" "ERES Biotechnology" "url" site.Data.links.eres)
+    }}
+    <script type="application/ld+json">{{ $person | jsonify | safeJS }}</script>
     <link rel="icon" href="{{ `images/favicon.svg` | relURL }}" type="image/svg+xml">
     <link rel="stylesheet" href="{{ `css/site.css` | relURL }}">
   </head>

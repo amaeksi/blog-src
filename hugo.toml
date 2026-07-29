@@ -13,7 +13,7 @@ disableKinds = ["taxonomy", "term", "RSS"]
   filename = "sitemap.xml"
 
 [params]
-  description = "Elçin Ekşi — biyoloji, doğa gözlemi ve yaratıcı öğrenmenin kesişiminde projeler."
+  description = "Elçin Ekşi — biyoloji araştırmaları, biyoteknoloji girişimciliği ve bilim iletişiminin kesişiminde çalışmalar."
   author = "Elçin Ekşi"
   defaultImage = "/images/elcin-arazi.jpg"
 
