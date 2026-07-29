@@ -1,6 +1,31 @@
 # Google Form hazır olduğunda yalnızca bu alanı güncelleyin.
 # URL boşken kayıt CTA'ları güvenli bir "yakında" durumunda kalır.
 registration_form: "https://forms.gle/q3TZqQgPM1XxhGB68"
+
+# Site genelinde kullanılan doğrulanmış profesyonel profil, kayıt ve dış kaynak bağlantıları burada merkezi olarak tutulur.
+linkedin: "https://www.linkedin.com/in/el%C3%A7in-ek%C5%9Fi"
+google_scholar: "https://scholar.google.com/citations?user=WNhtRggAAAAJ&hl=tr&oi=ao"
+researchgate: "https://www.researchgate.net/profile/Elcin-Eksi"
+github: "https://github.com/amaeksi"
+medium: "https://elcin.medium.com/"
+x: "https://x.com/eksi_e"
 instagram: "https://www.instagram.com/eksielcin/"
-google_scholar: "https://scholar.google.com.tr/citations?user=WNhtRggAAAAJ&hl=tr&oi=ao"
+
+eres: "https://www.eresbiotech.com/"
+eres_academy: "https://akademi.eresbiotech.com/"
+ekoevo: "https://ekoevo.org/"
+ekoevo_bulletin_2026: "https://ekoevo.org/wp-content/uploads/2026/02/ENG_EkoEvo_Bulletin_2026.pdf"
+eebst25_program: "https://eebst.ekoevo.org/wp-content/uploads/2025/07/EEBST25_PrograM_Updated_03072025.pdf"
+openmetu_thesis: "https://open.metu.edu.tr/handle/11511/102563"
+researchgate_anopheles: "https://www.researchgate.net/publication/283420490_A_survey_of_the_Anopheles_maculipennis_complex_species_and_population_densities_in_Blacksea_coastal_region_of_Turkey"
+researchgate_bioinformatics_education: "https://www.researchgate.net/publication/367148488_Turkiye%27de_Ogrenciler_Biyoinformatik_Ogretimi_Hakkinda_Ne_Dusunuyor"
+researchgate_ciconia: "https://www.researchgate.net/publication/401801766_Ozel_Arastirma_Raporu_Ciconia_ciconia_Populasyon_Genetiginde_Anadolu_Etkisi"
+ieee_webed: "https://embs.ieee.org.tr/webed/"
+sivilbilim_handbook: "https://sivilbilim.com/wp-content/uploads/2025/03/Bilim-Iletisimcisinin-El-Kitabi.pdf"
+bilimkutusu_catalog: "https://www.kalkinmakutuphanesi.gov.tr/assets/upload/dosyalar/aka_projepazari_kitapcik_2019.pdf"
+women_in_science_talk: "https://evrimagaci.org/etkinlik/cam-tavanlari-kiran-kadinlar-turkiye039de-bilimin-onculeri-elcin-eksi-1381"
+medium_mutations: "https://elcin.medium.com/koronavir%C3%BCs-ve-%C3%B6c%C3%BC-mutasyonlar%C4%B1-cfbe1474cccc"
+medium_gene_therapy: "https://elcin.medium.com/d%C3%BC%C4%9Fmeye-bas-gen-terapini-al-5b30c98c870"
+medium_biotech_startups: "https://elcin.medium.com/biyoteknoloji-giri%C5%9Fimleri-i%CC%87%C3%A7in-ya%C5%9Famsal-i%CC%87pu%C3%A7lar%C4%B1-2-5243790bd570"
+medium_annihilation: "https://medium.com/t%C3%BCrkiye/annihilation-yok-olu%C5%9F-ger%C3%A7ekten-yok-mu-oluyor-3ef80bd77914"
 email: ""

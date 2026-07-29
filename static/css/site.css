@@ -179,6 +179,29 @@ h3 { font-size: clamp(1.2rem, 2vw, 1.45rem); }
 .contact-links { display: grid; padding: 0; list-style: none; border-top: 1px solid var(--border); }
 .contact-links li { border-bottom: 1px solid var(--border); }
 .contact-links a { display: flex; justify-content: space-between; padding: 1rem 0; font-weight: 700; text-decoration: none; }
+.archive-elsewhere { margin-top: var(--space-lg); padding-top: var(--space-md); border-top: 1px solid var(--border); }
+.archive-elsewhere h2 { margin-bottom: 1rem; }
+.archive-elsewhere p { max-width: 42rem; color: var(--muted); }
+
+.profile-hero { background: var(--cream); }
+.profile-hero__inner, .profile-prose, .profile-section, .profile-related { width: min(calc(100% - 2rem), var(--wide-width)); margin: 0 auto; }
+.profile-hero__inner { max-width: min(calc(100% - 2rem), 58rem); margin-left: max(1rem, calc((100% - var(--wide-width)) / 2)); padding: var(--space-lg) 0; }
+.profile-hero h1 { max-width: 15ch; margin-bottom: 1rem; }
+.profile-prose { max-width: min(calc(100% - 2rem), var(--content-width)); padding: var(--space-lg) 0; }
+.profile-section { padding: var(--space-lg) 0; }
+.profile-section--cream { width: 100%; max-width: none; padding-right: max(1rem, calc((100% - var(--wide-width)) / 2)); padding-left: max(1rem, calc((100% - var(--wide-width)) / 2)); background: var(--cream); }
+.profile-section__heading { max-width: 44rem; margin-bottom: var(--space-md); }
+.profile-section__heading h2 { margin-bottom: 0; }
+.profile-card-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; border: 1px solid var(--border); background: var(--border); }
+.profile-card { min-width: 0; padding: clamp(1.3rem, 3vw, 2rem); background: var(--surface); }
+.profile-card__meta { margin-bottom: .75rem; color: var(--dry-leaf); font-size: .75rem; font-weight: 750; letter-spacing: .11em; text-transform: uppercase; }
+.profile-card h3 { margin-bottom: .8rem; font-family: var(--sans); font-size: 1.2rem; }
+.profile-card p:not(.profile-card__meta) { color: var(--muted); font-size: .95rem; }
+.profile-related { margin-bottom: var(--space-lg); padding: var(--space-md) 0; border-top: 1px solid var(--border); }
+.profile-related__links { display: flex; flex-wrap: wrap; gap: .7rem 1.5rem; }
+.profile-related__links a { font-weight: 750; }
+.home-pillars .work-grid article, .home-evidence .work-grid article { display: flex; flex-direction: column; align-items: flex-start; }
+.home-pillars .work-grid .text-link, .home-evidence .work-grid .text-link { margin-top: auto; }
 
 .guide-shell { width: min(calc(100% - 2rem), var(--content-width)); margin: 0 auto; padding: clamp(2rem, 7vw, 5rem) 0; }
 .guide-header { margin-bottom: 2rem; }
@@ -203,6 +226,7 @@ h3 { font-size: clamp(1.2rem, 2vw, 1.45rem); }
   .home-hero__image img { min-height: 19rem; }
   .section--two-column { grid-template-columns: 1fr; gap: 1rem; }
   .work-grid, .post-grid { grid-template-columns: 1fr; }
+  .profile-card-grid { grid-template-columns: 1fr; }
   .section__heading--row { align-items: start; flex-direction: column; }
   .workshop-facts { grid-template-columns: 1fr; }
   .workshop-facts div, .workshop-facts div + div { padding: .75rem 0; border-left: 0; }

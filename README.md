@@ -24,7 +24,10 @@ hugo --gc --minify
 - `content/gunesimden-kac/`: proje ve atölye sayfaları.
 - `content/post/`: eski yazı arşivi. Yazıların kalıcı adresleri `/post/.../` olarak korunur; arşiv listesi `/yazilar/`dadır.
 - `content/isigin-rengi-rehber-h7n4/`: QR katılımcı rehberi. Navigasyonda yer almaz, `noindex,nofollow` taşır ve özel sitemap şablonu sayesinde sitemap’e girmez. Bu URL erişim kontrolü değildir; bağlantıyı bilen kişi sayfayı açabilir.
+- `content/akademi/`, `content/girisimcilik/`, `content/bilim-iletisimi/`: araştırma, biyoteknoloji girişimciliği ve bilim iletişimi eksenleri.
 - `static/images/`: eski arşivden korunan yazı ve kişisel fotoğrafları.
+
+Profesyonel profil bağlantıları `data/links.yaml` içinde merkezi olarak tutulur. Kamuya açık iddiaların bakım kaydı `docs/profile-sources.md` dosyasındadır; Hugo tarafından yayınlanmaz.
 
 ## Kayıt formu ve bağlantılar
 
@@ -44,11 +47,11 @@ Yeni bir atölye eklemek için `content/gunesimden-kac/` altında yeni bir içer
 
 ## Yayınlama
 
-`.github/workflows/deploy.yml`, `main` dalına gelen push’larda Hugo’yu derler ve resmi GitHub Pages artifact/deploy action’larıyla yayınlar. GitHub deposunda **Settings → Pages → Build and deployment → Source** seçeneğini **GitHub Actions** yapın.
+`.github/workflows/deploy.yml`, `master` dalına gelen push’larda Hugo’yu derler ve resmi GitHub Pages artifact/deploy action’larıyla yayınlar. GitHub deposunda **Settings → Pages → Build and deployment → Source** seçeneğini **GitHub Actions** yapın.
 
 ### Özel alan adı
 
-`static/CNAME` dosyası canonical alan adını `elcineksi.com` olarak taşır. GitHub Pages ayarlarında **Custom domain** alanına `elcineksi.com` yazın, doğrulama tamamlandıktan sonra **Enforce HTTPS** seçeneğini etkinleştirin.
+GitHub Pages özel alan adı **Settings → Pages → Custom domain** alanında `elcineksi.com` olarak yönetilir. Actions dağıtımı bu Pages ayarını kullanır. `static/CNAME` dosyası site çıktısında alan adını koruyan bir uyumluluk dosyasıdır; Actions dağıtımının kaynak ayarı değildir. Doğrulama tamamlandıktan sonra **Enforce HTTPS** seçeneğini etkinleştirin.
 
 DNS sağlayıcısında aşağıdaki kayıtları eklemek kullanıcı tarafında yapılacak işlemdir:
 

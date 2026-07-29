@@ -16,5 +16,14 @@
         </article>
       {{ end }}
     </div>
+    <section class="archive-elsewhere" aria-labelledby="elsewhere-title">
+      <p class="eyebrow">Diğer platformlarda</p>
+      <h2 id="elsewhere-title">Yazılar ve notlar</h2>
+      <p>Seçilmiş bilim, araştırma ve girişimcilik yazıları için Medium profilime; güncel profesyonel notlar için LinkedIn’e göz atabilirsin.</p>
+      <div class="button-row">
+        {{ with site.Data.links.medium }}<a class="text-link" href="{{ . }}" target="_blank" rel="me noopener noreferrer">Medium <span aria-hidden="true">↗</span></a>{{ end }}
+        {{ with site.Data.links.linkedin }}<a class="text-link" href="{{ . }}" target="_blank" rel="me noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a>{{ end }}
+      </div>
+    </section>
   </section>
 {{ end }}
