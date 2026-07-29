@@ -1,9 +1,9 @@
 ---
 title: "İletişim"
-description: "Elçin Ekşi'nin doğrulanmış çevrimiçi profilleri."
+description: "Elçin Ekşi'nin doğrulanmış profesyonel profilleri, yazıları ve proje bağlantıları."
 type: contact
 ---
 
-Güneşimden Kaç’ın yeni atölyeleri ve açık içerikler için Instagram’ı takip edebilirsin. Akademik yayınlara Google Scholar profilinden ulaşabilirsin.
+Profesyonel çalışmalar, araştırma profili, yazılar ve teknik üretimler için aşağıdaki doğrulanmış kamusal bağlantıları kullanabilirsin. Kişisel iletişim bilgileri burada yayımlanmıyor.
 
-Yeni bir iletişim kanalı eklendiğinde burada görünür olacak.
+Kurumsal biyoteknoloji ve eğitim çalışmaları için ERES Biotechnology bağlantısını; yaratıcı doğa atölyeleri için [Güneşimden Kaç](/gunesimden-kac/) sayfasını ziyaret edebilirsin.

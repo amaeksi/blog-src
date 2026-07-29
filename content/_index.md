@@ -1,4 +1,4 @@
 ---
 title: "Elçin Ekşi"
-description: "Biyoloji, doğa gözlemi ve yaratıcı öğrenmenin kesişiminde projeler."
+description: "Biyoloji araştırmaları, biyoteknoloji girişimciliği ve bilim iletişiminin kesişiminde çalışmalar."
 ---
