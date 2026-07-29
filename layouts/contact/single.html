@@ -6,11 +6,14 @@
       <p class="lead">{{ .Description }}</p>
     </header>
     {{ .Content }}
-    <ul class="contact-links" aria-label="Profesyonel profil bağlantıları">
+    <ul class="contact-links" aria-label="Profesyonel, akademik ve sosyal profil bağlantıları">
       {{ with site.Data.links.linkedin }}<li><a href="{{ . }}" target="_blank" rel="me noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a></li>{{ end }}
+      {{ with site.Data.links.google_scholar }}<li><a href="{{ . }}" target="_blank" rel="me noopener noreferrer">Google Scholar <span aria-hidden="true">↗</span></a></li>{{ end }}
       {{ with site.Data.links.researchgate }}<li><a href="{{ . }}" target="_blank" rel="me noopener noreferrer">ResearchGate <span aria-hidden="true">↗</span></a></li>{{ end }}
-      {{ with site.Data.links.medium }}<li><a href="{{ . }}" target="_blank" rel="me noopener noreferrer">Medium <span aria-hidden="true">↗</span></a></li>{{ end }}
       {{ with site.Data.links.github }}<li><a href="{{ . }}" target="_blank" rel="me noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a></li>{{ end }}
+      {{ with site.Data.links.medium }}<li><a href="{{ . }}" target="_blank" rel="me noopener noreferrer">Medium <span aria-hidden="true">↗</span></a></li>{{ end }}
+      {{ with site.Data.links.x }}<li><a href="{{ . }}" target="_blank" rel="me noopener noreferrer">X <span aria-hidden="true">↗</span></a></li>{{ end }}
+      {{ with site.Data.links.instagram }}<li><a href="{{ . }}" target="_blank" rel="me noopener noreferrer">Instagram <span aria-hidden="true">↗</span></a></li>{{ end }}
       {{ with site.Data.links.eres }}<li><a href="{{ . }}" target="_blank" rel="noopener noreferrer">ERES Biotechnology <span aria-hidden="true">↗</span></a></li>{{ end }}
       {{ with site.Data.links.email }}<li><a href="mailto:{{ . }}">E-posta</a></li>{{ end }}
     </ul>

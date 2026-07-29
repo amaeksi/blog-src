@@ -4,6 +4,6 @@ description: "Elçin Ekşi'nin doğrulanmış profesyonel profilleri, yazıları
 type: contact
 ---
 
-Profesyonel çalışmalar, araştırma profili, yazılar ve teknik üretimler için aşağıdaki doğrulanmış kamusal bağlantıları kullanabilirsin. Kişisel iletişim bilgileri burada yayımlanmıyor.
+Profesyonel çalışmalar, akademik kayıtlar, yazılar ve sosyal profiller için aşağıdaki doğrulanmış kamusal bağlantıları kullanabilirsin. Kişisel iletişim bilgileri burada yayımlanmıyor.
 
 Kurumsal biyoteknoloji ve eğitim çalışmaları için ERES Biotechnology bağlantısını; yaratıcı doğa atölyeleri için [Güneşimden Kaç](/gunesimden-kac/) sayfasını ziyaret edebilirsin.

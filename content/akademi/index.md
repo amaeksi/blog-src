@@ -1,77 +1,74 @@
 ---
 title: "Akademik araştırmalar"
-description: "Elçin Ekşi'nin ekoloji, evrim, biyoçeşitlilik, popülasyon genetiği ve biyoinformatik eksenindeki araştırmaları ve seçilmiş akademik çalışmaları."
+description: "Elçin Ekşi'nin ekoloji, evrim, biyoçeşitlilik ve veri temelli biyoloji etrafındaki araştırma geçmişi ve seçilmiş kayıtları."
 type: profile
 kicker: "Araştırma"
-currentHeading: "Araştırma odağı"
-worksHeading: "Seçilmiş araştırmalar"
+currentHeading: "Akademik profiller ve güncel hat"
+worksHeading: "Seçilmiş araştırmalar ve konuşmalar"
 current:
-  - label: "Güncel araştırma"
-    title: "Ekoloji, evrim ve veri"
-    text: "Canlı çeşitliliği, popülasyonlar ve geçmiş ekosistemlerin izleri üzerine veri temelli biyoloji sorularıyla çalışıyorum."
+  - label: "Akademik profil"
+    title: "Google Scholar"
+    text: "Yayın ve akademik kayıtlar için doğrulanmış Google Scholar profili. Değişken atıf metrikleri burada sabitlenmez; profil güncel kaynak olarak kullanılır."
+    link: google_scholar
+    linkLabel: "Google Scholar profilini aç"
+  - label: "Araştırma profili"
+    title: "ResearchGate"
+    text: "Araştırma kayıtları, çalışma alanları ve seçilmiş yayınlar için kamusal profil."
     link: researchgate
     linkLabel: "ResearchGate profilini aç"
-  - label: "Doktora araştırması"
-    title: "Ege Üniversitesi Biyoloji"
-    text: "ResearchGate profili ve 2026 EkoEvo bültenindeki kurum bilgisi, Ege Üniversitesi Biyoloji ile süren doktora araştırması bağlantısını gösteriyor."
+  - label: "Güncel akademik hat"
+    title: "Ekoloji, evrim ve veri temelli biyoloji"
+    text: "Biyoçeşitlilik, popülasyonlar, ekoloji ve evrim sorularını veriye dayalı yöntemlerle birlikte düşünmeye devam ediyorum."
     link: ekoevo_bulletin_2026
-    linkLabel: "EkoEvo bültenini gör"
+    linkLabel: "EkoEvo 2026 bültenini aç"
 works:
   - year: "2026"
-    kind: "Teknik rapor"
-    title: "Ciconia ciconia popülasyon genetiğinde Anadolu etkisi"
-    text: "Leylek popülasyonları ve Anadolu’nun genetik coğrafyası üzerinden biyocoğrafya ve popülasyon analizine odaklanan teknik rapor."
+    kind: "Teknik araştırma raporu"
+    title: "Ciconia ciconia Popülasyon Genetiğinde Anadolu Etkisi"
+    text: "Anadolu'nun leylek popülasyon genetiğindeki yerini ele alan, kamusal ResearchGate kaydı bulunan teknik rapor."
     link: researchgate_ciconia
-    linkLabel: "Teknik raporu aç"
+    linkLabel: "Araştırma kaydını aç"
+  - year: "2025"
+    kind: "Konferans konuşması"
+    title: "Computational Methods Transforming Paleontology"
+    text: "EEBST25 resmî programında yer alan, paleontoloji araştırmalarında hesaplamalı yöntemler üzerine konuşma."
+    link: eebst25_program
+    linkLabel: "EEBST25 programını aç"
   - year: "2023"
     kind: "Yüksek lisans tezi"
     title: "Statistical Prediction of the Extinction Time of Extinct Mammalian Species in Anatolia"
-    text: "Anadolu’daki arkeolojik memeli kayıtlarından yok oluş zamanını istatistiksel yöntemlerle inceleyen ODTÜ Arkeometri tezi."
+    text: "ODTÜ Arkeometri'de tamamlanan, Anadolu'da yok olmuş memeli türlerinin yok oluş zamanını arkeolojik kayıtlar üzerinden istatistiksel olarak inceleyen tez."
     link: openmetu_thesis
-    linkLabel: "OpenMETU kaydını aç"
+    linkLabel: "OpenMETU tez kaydını aç"
   - year: "2022"
     kind: "Poster"
-    title: "Türkiye’de öğrenciler biyoinformatik öğretimi hakkında ne düşünüyor?"
-    text: "Yaşam bilimleri öğrencilerinin biyoinformatik öğretimine ilişkin görüşlerini derleyen konferans posteri."
+    title: "Türkiye'de Öğrenciler Biyoinformatik Öğretimi Hakkında Ne Düşünüyor?"
+    text: "Biyoinformatik öğrenimine ilişkin öğrenci deneyimlerini ele alan çalışma."
     link: researchgate_bioinformatics_education
-    linkLabel: "Poster kaydını aç"
+    linkLabel: "Çalışma kaydını aç"
   - year: "2011"
     kind: "Konferans bildirisi"
-    title: "Karadeniz kıyısında Anopheles maculipennis türleri ve popülasyon yoğunlukları"
-    text: "Vektör ekolojisi araştırmalarının erken dönemindeki saha örneklemesi ve tür belirleme çalışması."
+    title: "Anopheles maculipennis complex species and population densities"
+    text: "Karadeniz kıyı bölgesindeki Anopheles maculipennis kompleksi türleri ve popülasyon yoğunlukları üzerine çalışma."
     link: researchgate_anopheles
-    linkLabel: "Bildiri kaydını aç"
-  - year: "2025"
-    kind: "Konferans programı"
-    title: "Computational Methods Transforming Paleontology"
-    text: "Ekoloji ve evrimsel biyoloji toplantısında hesaplamalı yöntemler ile paleontoloji arasındaki ilişkiye odaklanan konuşma."
-    link: eebst25_program
-    linkLabel: "Konferans programını aç"
+    linkLabel: "Araştırma kaydını aç"
 related:
   - title: "Biyoteknoloji & girişimcilik"
     url: "/girisimcilik/"
   - title: "Bilim iletişimi"
     url: "/bilim-iletisimi/"
-  - title: "Güneşimden Kaç"
-    url: "/gunesimden-kac/"
+  - title: "Yazılar"
+    url: "/yazilar/"
 ---
 
-Araştırmalarım, canlıların zaman ve mekân içindeki dağılımlarına dair merakla başladı. Ekoloji, evrim, biyoçeşitlilik, moleküler ekoloji, filocoğrafya ve popülasyon genetiği bu yolculuğun birbirine değen parçaları. Bu alanları tek tek uzmanlık etiketi olarak değil; farklı araştırma sorularına yaklaşmak için kullandığım yöntem ve bağlamlar olarak görüyorum.
+Araştırma hattım ekoloji, evrim, biyoçeşitlilik ve veri temelli biyoloji etrafında ilerliyor. Bu alanları birbirinden kopuk başlıklar olarak değil; canlı çeşitliliği, geçmiş kayıtlar, popülasyonlar ve çevresel değişim hakkında daha iyi sorular kurmanın farklı yolları olarak görüyorum.
 
-İlk çalışmalarım vektör ekolojisi etrafındaydı: sivrisinek popülasyonları, tür dağılımları ve insektisit direnci. Antik DNA ve arkeozoolojiyle birlikte araştırma sorularım, geçmişteki popülasyonlar ile Anadolu’nun biyolojik ve kültürel kayıtlarına uzandı. Biyoinformatik ise hem araştırma verisini okumak hem de bu becerilerin nasıl öğretilebileceğini düşünmek için önemli bir araç oldu.
+## Araştırma geçmişi
 
-## Akademik yolculuk
+Hacettepe Üniversitesi Biyoloji Bölümü'ndeki eğitimimin ardından ilk araştırma yıllarımda sivrisinekler, vektör ekolojisi ve insektisit direnci üzerine çalıştım. Daha sonra antik DNA, arkeozooloji ve Anadolu biyoçeşitliliğiyle ilişkili sorulara yöneldim.
 
-### Hacettepe Üniversitesi
+ODTÜ Arkeometri'de tamamladığım yüksek lisans tezinde, Anadolu'da son on bin yılda yaşamış ve yok olmuş memeli türlerinin arkeolojik kayıtlarından yok oluş zamanını istatistiksel olarak incelemeye odaklandım. Kamuya açık ResearchGate profili, güncel akademik çalışmalarımı Ege Üniversitesi Biyoloji Bölümü doktora öğrencisi olarak listeliyor; bu çalışma devam eden bir araştırma hattı olarak sunuluyor.
 
-Biyoloji lisans eğitimim, ekoloji ve canlı çeşitliliğine yönelik ilk saha ve araştırma deneyimlerimin temelini oluşturdu. Vektör ekolojisi, Anopheles ve Culex popülasyonları üzerine çalışmalar bu dönemin devamında gelişti.
+## Yöntem ve ilgi alanları
 
-### Antik DNA ve arkeozooloji
-
-Geçmiş popülasyonları anlamak için genetik veri, arkeolojik kayıt ve istatistiksel çıkarımın birlikte nasıl çalışabileceğiyle ilgilendim. Bu çizgi, Anadolu’nun eski faunasına dair yüksek lisans araştırmasına bağlandı.
-
-### ODTÜ Arkeometri
-
-2023’te tamamlanan yüksek lisans tezinde, Anadolu’da son on bin yılda yaşamış ve yok olmuş memeli türlerinin arkeolojik görünüm kayıtlarını kullandım. Çalışma, sınırlı zaman noktası verisinden yok oluş tarihini tahmin etmeye yarayan yöntemleri karşılaştırıyor.
-
-Bu sayfadaki seçki tam bir yayın listesi değildir. Güncel profil ve diğer çalışmalar için ResearchGate bağlantısını kullanabilirsin.
+Moleküler ekoloji, filocoğrafya, popülasyon genetiği, biyoçeşitlilik ve hesaplamalı yöntemler; araştırma sorularımı veriyle ilişkilendirdiğim başlıca alanlar. Bu ilgi, araştırma pratiğini biyoinformatik eğitimi ve bilim iletişimiyle buluşturan diğer çalışmalarımı da besliyor.

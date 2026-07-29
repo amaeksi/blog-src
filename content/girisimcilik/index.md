@@ -7,20 +7,20 @@ currentHeading: "Bilimden uygulamaya"
 worksHeading: "Girişimcilik çalışmaları"
 current:
   - label: "ERES Biotechnology"
-    title: "Biyoteknoloji ve erişilebilir DNA teknolojileri"
-    text: "ERES Biotechnology’yi 2013’te DNA teknolojilerini daha erişilebilir hale getiren projeler geliştirmek amacıyla kurdum."
+    title: "Bilim temelli strateji ve çözüm geliştirme"
+    text: "ERES Biotechnology’yi 2013’te DNA teknolojilerini daha erişilebilir hale getiren projeler geliştirmek amacıyla kurdum; bugün bu kökler daha geniş bir strateji, eğitim ve çözüm geliştirme hattında sürüyor."
     link: eres
     linkLabel: "ERES’i ziyaret et"
   - label: "Eğitim"
     title: "Biyoinformatik öğrenme deneyimleri"
     text: "Yaşam bilimleri araştırmacıları için biyoinformatiğin temel araçlarını ve veri okuryazarlığını erişilebilir öğrenme akışlarıyla buluşturan çalışmalar yürütüyorum."
-    link: eres
-    linkLabel: "ERES Biyoinformatik Akademi’yi gör"
+    link: eres_academy
+    linkLabel: "ERES Akademi’yi gör"
 works:
   - year: "2013–"
     kind: "Kurucu"
     title: "ERES Biotechnology"
-    text: "Biyoteknoloji, DNA teknolojileri, araştırma ve eğitim çalışmalarını bir araya getiren yaşam bilimleri girişimi."
+    text: "DNA teknolojileri ve yaşam bilimlerinden doğan; bugün ekoloji, biyoinformatik, eğitim, strateji ve çözüm geliştirmeyi bir araya getiren girişim."
     link: eres
     linkLabel: "Resmî sayfayı aç"
   - year: "2019"
@@ -59,9 +59,9 @@ Girişimcilik benim için bilimsel bilgiyi yalnızca ticarileştirmek değil; bi
 
 ## ERES Biotechnology
 
-ERES Biotechnology, 2013’te DNA teknolojilerini daha erişilebilir hale getiren projeler geliştirmek amacıyla kurduğum girişim. Zaman içinde çalışmalar; akademik ve sektörel proje geliştirme, yaşam bilimleri için teknik içerik ve biyoinformatik öğrenme deneyimleri etrafında genişledi.
+ERES Biotechnology, 2013’te DNA teknolojilerini ve yaşam bilimleri bilgisini daha erişilebilir hale getiren projeler geliştirmek amacıyla kurduğum girişim. Bugün ERES; yaşam bilimleri, ekoloji, biyoinformatik ve sistem düşüncesinden beslenen eğitim, strateji ve çözüm geliştirme çalışmalarını bir araya getiriyor.
 
-Biyoinformatiği yalnızca bir araç listesi olarak değil, araştırma verisini okuyabilme ve daha iyi sorular kurabilme becerisi olarak ele alıyorum. Bu yüzden eğitim çalışmalarında temel kavramları, uygulamayı ve araştırma bağlamını birlikte düşünmeye çalışıyorum.
+Biyoinformatiği yalnızca bir araç listesi olarak değil, araştırma verisini okuyabilme ve daha iyi sorular kurabilme becerisi olarak ele alıyorum. ERES Akademi’de bu yaklaşım, yaşam bilimleri araştırmacılarına yönelik uygulama odaklı öğrenme deneyimlerine dönüşüyor. ERES’in daha geniş hattında ise doğa, sürdürülebilirlik ve bilimsel bilgiyi uygulanabilir strateji ve çözüm modellerine bağlayan çalışmalar yer alıyor.
 
 ## Geçmiş projeler
 

@@ -1,12 +1,18 @@
 # Google Form hazır olduğunda yalnızca bu alanı güncelleyin.
 # URL boşken kayıt CTA'ları güvenli bir "yakında" durumunda kalır.
 registration_form: "https://forms.gle/q3TZqQgPM1XxhGB68"
-# Yalnızca kamuya açık ve kimliği doğrulanmış profesyonel profiller burada tutulur.
+
+# Site genelinde kullanılan doğrulanmış profesyonel profil, kayıt ve dış kaynak bağlantıları burada merkezi olarak tutulur.
 linkedin: "https://www.linkedin.com/in/el%C3%A7in-ek%C5%9Fi"
+google_scholar: "https://scholar.google.com/citations?user=WNhtRggAAAAJ&hl=tr&oi=ao"
 researchgate: "https://www.researchgate.net/profile/Elcin-Eksi"
-medium: "https://elcin.medium.com/"
 github: "https://github.com/amaeksi"
-eres: "https://eresbiotech.learnworlds.com/about"
+medium: "https://elcin.medium.com/"
+x: "https://x.com/eksi_e"
+instagram: "https://www.instagram.com/eksielcin/"
+
+eres: "https://www.eresbiotech.com/"
+eres_academy: "https://akademi.eresbiotech.com/"
 ekoevo: "https://ekoevo.org/"
 ekoevo_bulletin_2026: "https://ekoevo.org/wp-content/uploads/2026/02/ENG_EkoEvo_Bulletin_2026.pdf"
 eebst25_program: "https://eebst.ekoevo.org/wp-content/uploads/2025/07/EEBST25_PrograM_Updated_03072025.pdf"
