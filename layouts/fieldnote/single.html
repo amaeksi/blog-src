@@ -1,0 +1,18 @@
+{{ define "main" }}
+  <nav class="nature-local-nav nature-local-nav--article" aria-label="Güneşimden Kaç bölümleri">
+    <a href="{{ `/gunesimden-kac/` | relURL }}">Güneşimden Kaç</a>
+    <a href="{{ `/gunesimden-kac/isigin-rengi/` | relURL }}">Işığın Rengi</a>
+    <a href="{{ `/gunesimden-kac/saha-notlari/` | relURL }}">Saha Notları</a>
+  </nav>
+  <article class="field-note-shell prose">
+    <p class="field-note-breadcrumb"><a href="{{ `/gunesimden-kac/` | relURL }}">Güneşimden Kaç</a><span aria-hidden="true">/</span><a href="{{ `/gunesimden-kac/saha-notlari/` | relURL }}">Saha Notları</a><span aria-hidden="true">/</span><span>{{ .Title }}</span></p>
+    <header class="field-note-header">
+      <p class="eyebrow">Saha Notu {{ printf "%02d" .Weight }}</p>
+      <h1>{{ .Title }}</h1>
+      <p class="lead">{{ .Description }}</p>
+      {{ with .Params.keywords }}<p class="field-note-header__keywords">{{ delimit . " · " }}</p>{{ end }}
+    </header>
+    {{ .Content }}
+  </article>
+  {{ partial "gunesimden-kac-notlari.html" . }}
+{{ end }}

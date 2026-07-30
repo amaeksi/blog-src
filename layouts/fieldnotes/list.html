@@ -1,0 +1,27 @@
+{{ define "main" }}
+  <section class="field-notes-hero">
+    <div>
+      <p class="eyebrow">Güneşimden Kaç</p>
+      <h1>{{ .Title }}</h1>
+      <p class="lead">{{ .Params.lead | default .Description }}</p>
+    </div>
+  </section>
+  <nav class="nature-local-nav" aria-label="Güneşimden Kaç bölümleri">
+    <a href="{{ `/gunesimden-kac/` | relURL }}">Güneşimden Kaç</a>
+    <a href="{{ `/gunesimden-kac/isigin-rengi/` | relURL }}">Işığın Rengi</a>
+    <a aria-current="page" href="{{ `/gunesimden-kac/saha-notlari/` | relURL }}">Saha Notları</a>
+  </nav>
+  <section class="field-notes-listing" aria-label="Saha Notları listesi">
+    {{ range sort .RegularPages "Weight" "asc" }}
+      <article class="field-note-card">
+        <p class="field-note-card__number">Saha Notu {{ printf "%02d" .Weight }}</p>
+        <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+        <p class="field-note-card__question">{{ .Description }}</p>
+        <p>{{ .Params.card_summary }}</p>
+        {{ with .Params.keywords }}<p class="field-note-card__keywords">{{ delimit . " · " }}</p>{{ end }}
+        <a class="text-link" href="{{ .RelPermalink }}">Notu oku <span aria-hidden="true">→</span></a>
+      </article>
+    {{ end }}
+  </section>
+  {{ partial "gunesimden-kac-notlari.html" . }}
+{{ end }}
