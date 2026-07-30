@@ -2,15 +2,19 @@
   <section class="workshop-hero">
     <div class="workshop-hero__inner">
       <p class="eyebrow">Güneşimden Kaç I</p>
-      <h1>Işığın Rengi</h1>
-      <p class="workshop-hero__line">Güneş, bitkiler ve zamanın birlikte ürettiği izler.</p>
+      <h1>{{ .Title }}</h1>
+      {{ with .Params.question }}<p class="workshop-hero__question">{{ . }}</p>{{ end }}
       <p class="lead">{{ .Description }}</p>
-      <div class="button-row">
-        {{ partial "registration-cta.html" (dict "label" "Yeni tarihleri ilk sen öğren") }}
-        <a class="text-link" href="#anthotype">Anthotype’ı keşfet <span aria-hidden="true">↓</span></a>
-      </div>
+      {{ with .Params.callout }}<p class="workshop-hero__callout">{{ . }}</p>{{ end }}
+      <p class="workshop-hero__line">Güneş, bitkiler ve zamanın birlikte ürettiği izler.</p>
+      <a class="text-link" href="#bulusmada-ne-yapiyoruz">Buluşmaya bak <span aria-hidden="true">↓</span></a>
     </div>
   </section>
+  <nav class="nature-local-nav" aria-label="Güneşimden Kaç bölümleri">
+    <a href="{{ `/gunesimden-kac/` | relURL }}">Güneşimden Kaç</a>
+    <a aria-current="page" href="{{ `/gunesimden-kac/isigin-rengi/` | relURL }}">Işığın Rengi</a>
+    <a href="{{ `/gunesimden-kac/saha-notlari/` | relURL }}">Saha Notları</a>
+  </nav>
   <article class="page-shell prose workshop-prose">
     {{ .Content }}
   </article>
