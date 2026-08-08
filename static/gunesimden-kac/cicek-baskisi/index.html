@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Çiçek Baskısı — Kimyasıyla Birlikte</title>
+<style>
+  :root{
+    --paper:#faf6ef; --ink:#26221d; --soft:#6b625a; --faint:#9a9088;
+    --accent:#8a5a2b; --hl:#e8d9c0; --rule:#e3dbcd; --green:#31564a;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:Georgia,'Iowan Old Style',serif; font-size:17.5px; line-height:1.72;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:780px; margin:0 auto; padding:64px 28px 120px}
+  .kicker{font-size:12.5px; letter-spacing:.18em; text-transform:uppercase;
+    color:var(--faint); font-family:system-ui,-apple-system,sans-serif; margin:0 0 18px}
+  h1{font-size:44px; line-height:1.12; font-weight:400; margin:0 0 14px; letter-spacing:-.01em}
+  .lede{font-size:20px; line-height:1.6; color:var(--soft); margin:0 0 10px; font-style:italic}
+  .byline{font-size:14px; color:var(--faint); font-family:system-ui,sans-serif; margin:26px 0 0}
+  h2{font-size:15px; letter-spacing:.15em; text-transform:uppercase; font-weight:600;
+    font-family:system-ui,-apple-system,sans-serif; margin:76px 0 6px; color:var(--accent)}
+  h2 + .h2sub{font-size:29px; line-height:1.24; font-weight:400; margin:0 0 26px; letter-spacing:-.01em}
+  h3{font-size:21px; font-weight:400; margin:44px 0 12px; line-height:1.3}
+  h4{font-size:14px; font-family:system-ui,sans-serif; font-weight:600; letter-spacing:.04em;
+     margin:30px 0 8px; color:var(--soft)}
+  p{margin:0 0 18px}
+  strong{font-weight:700}
+  em{font-style:italic}
+  hr{border:0; border-top:1px solid var(--rule); margin:56px 0}
+  ul,ol{margin:0 0 20px; padding-left:22px}
+  li{margin:0 0 9px}
+  a{color:var(--accent)}
+  code{font-family:ui-monospace,Menlo,monospace; font-size:.86em; background:#f1e9dc;
+       padding:1px 5px; border-radius:3px}
+
+  figure{margin:34px 0; text-align:center}
+  figure svg{display:block; margin:0 auto}
+  .figcap,figcaption{font-family:system-ui,-apple-system,sans-serif; font-size:13.5px; line-height:1.6;
+    color:var(--faint); margin-top:14px; max-width:520px; margin-left:auto; margin-right:auto}
+  .trio{display:flex; gap:14px; flex-wrap:wrap; justify-content:center; align-items:flex-end}
+  .trio > div{flex:1 1 210px; min-width:190px; text-align:center}
+  .trio .nm{font-family:system-ui,sans-serif; font-size:13px; font-weight:600;
+            color:var(--soft); margin-top:6px}
+  .trio .sub{font-family:system-ui,sans-serif; font-size:12px; color:var(--faint)}
+  .pair{display:flex; gap:26px; flex-wrap:wrap; align-items:center; justify-content:center}
+  .pair > div{flex:1 1 280px; min-width:250px; text-align:center}
+
+  table{width:100%; border-collapse:collapse; margin:26px 0; font-size:15.5px;
+        font-family:system-ui,-apple-system,sans-serif}
+  th{text-align:left; font-size:12px; letter-spacing:.09em; text-transform:uppercase;
+     color:var(--faint); font-weight:600; padding:0 12px 9px 0; border-bottom:1px solid var(--rule)}
+  td{padding:11px 12px 11px 0; border-bottom:1px solid var(--rule); vertical-align:top; line-height:1.55}
+  tr:last-child td{border-bottom:0}
+
+  .note{background:#f3ecdf; border-left:2px solid var(--accent);
+        padding:18px 22px; margin:28px 0; font-size:16px}
+  .note p:last-child{margin-bottom:0}
+  .note .tag{font-family:system-ui,sans-serif; font-size:11.5px; letter-spacing:.13em;
+    text-transform:uppercase; color:var(--accent); font-weight:600; display:block; margin-bottom:7px}
+  .warn{background:#f6e8e2; border-left-color:#a2482c}
+  .warn .tag{color:#a2482c}
+  .steps{counter-reset:s; list-style:none; padding:0}
+  .steps li{counter-increment:s; position:relative; padding-left:44px; margin-bottom:16px}
+  .steps li::before{content:counter(s); position:absolute; left:0; top:2px;
+    width:27px; height:27px; border:1px solid var(--rule); border-radius:50%;
+    font-family:system-ui,sans-serif; font-size:13px; color:var(--accent);
+    display:flex; align-items:center; justify-content:center; background:#fff}
+  .toc{font-family:system-ui,-apple-system,sans-serif; font-size:15px; margin:44px 0 0;
+       border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); padding:22px 0}
+  .toc ol{margin:0; padding-left:20px; columns:2; column-gap:34px}
+  .toc li{margin:0 0 7px; break-inside:avoid}
+  .toc a{text-decoration:none; color:var(--ink)}
+  .toc a:hover{color:var(--accent)}
+  .refs{font-size:14.5px; font-family:system-ui,sans-serif; color:var(--soft)}
+  .refs li{margin-bottom:12px}
+  .end{text-align:center; color:var(--faint); font-size:13px;
+       font-family:system-ui,sans-serif; margin-top:80px}
+
+  @media print{
+    body{background:#fff; font-size:11pt}
+    .wrap{padding:0; max-width:none}
+    h2{margin-top:34px; page-break-after:avoid}
+    figure,table,.note{page-break-inside:avoid}
+    .toc{display:none}
+  }
+  @media (max-width:600px){
+    .wrap{padding:40px 20px 80px} h1{font-size:33px} h2 + .h2sub{font-size:24px}
+    .toc ol{columns:1}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<p class="kicker">Güneşimden Kaç · Atölye Rehberi</p>
+<h1>Çiçek Baskısı</h1>
+<p class="lede">Bir çiçeğin kumaşta bıraktığı iz, ve o izin neden kaldığı.</p>
+<p>Bu rehber iki soruyu birlikte cevaplıyor: atölyede <em>ne yapacaksın</em>, ve masadaki insanlara <em>ne anlatacaksın</em>. Uygulamayı kimyadan ayırmadım, çünkü bu atölyenin satılan tarafı zaten ikisinin bir arada olması. Tokmakla bastırıp güzel bir leke elde etmeyi herkes öğretebilir; neden bazı çiçeklerin kaldığını, bazılarının kaybolduğunu anlatmak seni ayıran şey.</p>
+
+<div class="toc">
+<ol>
+<li><a href="#b1">Rengin kaynağı</a></li>
+<li><a href="#b2">Pigment kumaşa nasıl geçiyor</a></li>
+<li><a href="#b3">Mordan: dört halkalı zincir</a></li>
+<li><a href="#b4">Su, pH ve alüminyumun kaderi</a></li>
+<li><a href="#b5">Uygulama yönergesi</a></li>
+<li><a href="#b6">Baskı tekniği</a></li>
+<li><a href="#b7">Sabitleme ve demir</a></li>
+<li><a href="#b8">Bitki tablosu</a></li>
+<li><a href="#b9">Solma</a></li>
+<li><a href="#b10">Ev denemesi matrisi</a></li>
+<li><a href="#b11">Masada ne anlatılır</a></li>
+<li><a href="#kaynaklar">Kaynaklar</a></li>
+</ol>
+</div>
+
+<hr>
+
+<h2 id="b1">Bölüm bir</h2>
+<p class="h2sub">Rengin kaynağı: dört pigment ailesi</p>
+
+<p>Atölyede kullanacağın bitkilerin rengi tek bir kimyadan gelmiyor. Hangi ailenin elinde olduğunu bilmek, o bitkinin şapa nasıl tepki vereceğini önceden söylemeni sağlıyor. Bu, atölyeyi tahminden çıkarıp öngörüye çeviren şey.</p>
+
+<h3>Antosiyaninler</h3>
+
+<p>Kırmızıdan mora, mordan maviye giden renklerin çoğundan bunlar sorumlu. Yapı üç halkadan oluşuyor: bir aromatik <strong>A halkası</strong>, oksijen taşıyan ve pozitif yüklü <strong>C halkası</strong>, ve dışarı sarkan <strong>B halkası</strong>. Asidik ortamda molekül flavilyum katyonu halinde duruyor — o küçük artı yükün bu hikâyede önemli bir yeri var, çünkü rengi de kararlılığı da ona bağlı.</p>
+
+<figure><svg xmlns="http://www.w3.org/2000/svg" viewBox="-92.5 -118.7 345.1 220.2" width="100%" style="max-width:345px" role="img"><circle cx="200.6" cy="-51.0" r="30.0" fill="#e8d9c0" opacity="0.85"/><circle cx="58.9" cy="-34.0" r="12.0" fill="#faf6ef" opacity="1.0"/><line x1="29.4" y1="-17.0" x2="0.0" y2="-34.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="0.0" y1="-34.0" x2="-29.4" y2="-17.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="-1.7" y1="-26.1" x2="-21.7" y2="-14.5" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="-29.4" y1="-17.0" x2="-29.4" y2="17.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="-29.4" y1="17.0" x2="-0.0" y2="34.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="-21.7" y1="14.5" x2="-1.7" y2="26.1" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="-0.0" y1="34.0" x2="29.4" y2="17.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="29.4" y1="17.0" x2="29.4" y2="-17.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="23.4" y1="11.6" x2="23.4" y2="-11.6" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="29.4" y1="-17.0" x2="58.9" y2="-34.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="58.9" y1="-34.0" x2="88.3" y2="-17.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="60.6" y1="-26.1" x2="80.6" y2="-14.5" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="88.3" y1="-17.0" x2="88.3" y2="17.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="88.3" y1="17.0" x2="58.9" y2="34.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="80.6" y1="14.5" x2="60.6" y2="26.1" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="58.9" y1="34.0" x2="29.4" y2="17.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><text x="58.9" y="-28.2" font-size="16" font-family="Georgia,serif" font-weight="500" text-anchor="middle" fill="#8a5a2b">O</text><text x="70.9" y="-39.3" font-size="13" font-family="Georgia,serif" font-weight="500" text-anchor="middle" fill="#8a5a2b">+</text><line x1="88.3" y1="-17.0" x2="117.8" y2="-34.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="176.6" y1="-68.0" x2="147.2" y2="-85.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="168.9" y1="-65.5" x2="148.9" y2="-77.1" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="147.2" y1="-85.0" x2="117.7" y2="-68.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="117.7" y1="-68.0" x2="117.7" y2="-34.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="123.7" y1="-62.6" x2="123.7" y2="-39.4" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="117.7" y1="-34.0" x2="147.2" y2="-17.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="147.2" y1="-17.0" x2="176.6" y2="-34.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="148.9" y1="-24.9" x2="168.9" y2="-36.5" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="176.6" y1="-34.0" x2="176.6" y2="-68.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="91.8" y1="19.0" x2="102.3" y2="25.1" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><text x="117.3" y="39.2" font-size="15" font-family="Georgia,serif" font-weight="500" text-anchor="middle" fill="#26221d">OH</text><line x1="-0.0" y1="38.0" x2="-0.0" y2="50.1" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><text x="-0.0" y="72.9" font-size="15" font-family="Georgia,serif" font-weight="500" text-anchor="middle" fill="#26221d">HO</text><line x1="-32.9" y1="-19.0" x2="-43.4" y2="-25.1" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><text x="-58.5" y="-28.3" font-size="15" font-family="Georgia,serif" font-weight="500" text-anchor="middle" fill="#26221d">HO</text><line x1="180.1" y1="-32.0" x2="190.6" y2="-25.9" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><text x="205.6" y="-11.8" font-size="15" font-family="Georgia,serif" font-weight="500" text-anchor="middle" fill="#26221d">OH</text><line x1="180.1" y1="-70.0" x2="190.6" y2="-76.1" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><text x="205.6" y="-79.3" font-size="15" font-family="Georgia,serif" font-weight="500" text-anchor="middle" fill="#26221d">OH</text><text x="0.0" y="5.0" font-size="14" font-family="Georgia,serif" font-weight="400" text-anchor="middle" fill="#9a9088">A</text><text x="58.9" y="5.0" font-size="14" font-family="Georgia,serif" font-weight="400" text-anchor="middle" fill="#9a9088">C</text><text x="147.2" y="-46.0" font-size="14" font-family="Georgia,serif" font-weight="400" text-anchor="middle" fill="#9a9088">B</text></svg><figcaption>Siyanidin. A ve C halkaları kaynaşmış; B halkası sağda. Vurgulu alan, B halkasındaki <strong>yan yana iki hidroksil</strong> — bu rehberin en çok geri döneceği ayrıntı.</figcaption></figure>
+
+<p>Asıl belirleyici olan B halkasındaki hidroksil sayısı ve düzeni. Üç yaygın antosiyanidini yan yana koyduğunda fark net görünüyor:</p>
+
+<figure><div class="trio"><div><svg xmlns="http://www.w3.org/2000/svg" viewBox="-92.5 -118.7 332.1 220.2" width="100%" style="max-width:332px" role="img"><circle cx="58.9" cy="-34.0" r="12.0" fill="#faf6ef" opacity="1.0"/><line x1="29.4" y1="-17.0" x2="0.0" y2="-34.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="0.0" y1="-34.0" x2="-29.4" y2="-17.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="-1.7" y1="-26.1" x2="-21.7" y2="-14.5" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="-29.4" y1="-17.0" x2="-29.4" y2="17.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="-29.4" y1="17.0" x2="-0.0" y2="34.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="-21.7" y1="14.5" x2="-1.7" y2="26.1" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="-0.0" y1="34.0" x2="29.4" y2="17.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="29.4" y1="17.0" x2="29.4" y2="-17.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="23.4" y1="11.6" x2="23.4" y2="-11.6" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="29.4" y1="-17.0" x2="58.9" y2="-34.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="58.9" y1="-34.0" x2="88.3" y2="-17.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="60.6" y1="-26.1" x2="80.6" y2="-14.5" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="88.3" y1="-17.0" x2="88.3" y2="17.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="88.3" y1="17.0" x2="58.9" y2="34.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="80.6" y1="14.5" x2="60.6" y2="26.1" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="58.9" y1="34.0" x2="29.4" y2="17.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><text x="58.9" y="-28.2" font-size="16" font-family="Georgia,serif" font-weight="500" text-anchor="middle" fill="#8a5a2b">O</text><text x="70.9" y="-39.3" font-size="13" font-family="Georgia,serif" font-weight="500" text-anchor="middle" fill="#8a5a2b">+</text><line x1="88.3" y1="-17.0" x2="117.8" y2="-34.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="176.6" y1="-68.0" x2="147.2" y2="-85.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="168.9" y1="-65.5" x2="148.9" y2="-77.1" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="147.2" y1="-85.0" x2="117.7" y2="-68.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="117.7" y1="-68.0" x2="117.7" y2="-34.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="123.7" y1="-62.6" x2="123.7" y2="-39.4" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="117.7" y1="-34.0" x2="147.2" y2="-17.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="147.2" y1="-17.0" x2="176.6" y2="-34.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="148.9" y1="-24.9" x2="168.9" y2="-36.5" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="176.6" y1="-34.0" x2="176.6" y2="-68.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="91.8" y1="19.0" x2="102.3" y2="25.1" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><text x="117.3" y="39.2" font-size="15" font-family="Georgia,serif" font-weight="500" text-anchor="middle" fill="#26221d">OH</text><line x1="-0.0" y1="38.0" x2="-0.0" y2="50.1" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><text x="-0.0" y="72.9" font-size="15" font-family="Georgia,serif" font-weight="500" text-anchor="middle" fill="#26221d">HO</text><line x1="-32.9" y1="-19.0" x2="-43.4" y2="-25.1" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><text x="-58.5" y="-28.3" font-size="15" font-family="Georgia,serif" font-weight="500" text-anchor="middle" fill="#26221d">HO</text><line x1="180.1" y1="-70.0" x2="190.6" y2="-76.1" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><text x="205.6" y="-79.3" font-size="15" font-family="Georgia,serif" font-weight="500" text-anchor="middle" fill="#26221d">OH</text><text x="0.0" y="5.0" font-size="14" font-family="Georgia,serif" font-weight="400" text-anchor="middle" fill="#9a9088">A</text><text x="58.9" y="5.0" font-size="14" font-family="Georgia,serif" font-weight="400" text-anchor="middle" fill="#9a9088">C</text><text x="147.2" y="-46.0" font-size="14" font-family="Georgia,serif" font-weight="400" text-anchor="middle" fill="#9a9088">B</text></svg><div class="nm">pelargonidin</div><div class="sub">1 hidroksil<br>kıskaç kurulamıyor</div></div><div><svg xmlns="http://www.w3.org/2000/svg" viewBox="-92.5 -118.7 345.1 220.2" width="100%" style="max-width:345px" role="img"><circle cx="200.6" cy="-51.0" r="30.0" fill="#e8d9c0" opacity="0.85"/><circle cx="58.9" cy="-34.0" r="12.0" fill="#faf6ef" opacity="1.0"/><line x1="29.4" y1="-17.0" x2="0.0" y2="-34.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="0.0" y1="-34.0" x2="-29.4" y2="-17.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="-1.7" y1="-26.1" x2="-21.7" y2="-14.5" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="-29.4" y1="-17.0" x2="-29.4" y2="17.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="-29.4" y1="17.0" x2="-0.0" y2="34.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="-21.7" y1="14.5" x2="-1.7" y2="26.1" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="-0.0" y1="34.0" x2="29.4" y2="17.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="29.4" y1="17.0" x2="29.4" y2="-17.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="23.4" y1="11.6" x2="23.4" y2="-11.6" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="29.4" y1="-17.0" x2="58.9" y2="-34.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="58.9" y1="-34.0" x2="88.3" y2="-17.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="60.6" y1="-26.1" x2="80.6" y2="-14.5" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="88.3" y1="-17.0" x2="88.3" y2="17.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="88.3" y1="17.0" x2="58.9" y2="34.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="80.6" y1="14.5" x2="60.6" y2="26.1" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="58.9" y1="34.0" x2="29.4" y2="17.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><text x="58.9" y="-28.2" font-size="16" font-family="Georgia,serif" font-weight="500" text-anchor="middle" fill="#8a5a2b">O</text><text x="70.9" y="-39.3" font-size="13" font-family="Georgia,serif" font-weight="500" text-anchor="middle" fill="#8a5a2b">+</text><line x1="88.3" y1="-17.0" x2="117.8" y2="-34.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="176.6" y1="-68.0" x2="147.2" y2="-85.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="168.9" y1="-65.5" x2="148.9" y2="-77.1" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="147.2" y1="-85.0" x2="117.7" y2="-68.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="117.7" y1="-68.0" x2="117.7" y2="-34.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="123.7" y1="-62.6" x2="123.7" y2="-39.4" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="117.7" y1="-34.0" x2="147.2" y2="-17.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="147.2" y1="-17.0" x2="176.6" y2="-34.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="148.9" y1="-24.9" x2="168.9" y2="-36.5" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="176.6" y1="-34.0" x2="176.6" y2="-68.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="91.8" y1="19.0" x2="102.3" y2="25.1" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><text x="117.3" y="39.2" font-size="15" font-family="Georgia,serif" font-weight="500" text-anchor="middle" fill="#26221d">OH</text><line x1="-0.0" y1="38.0" x2="-0.0" y2="50.1" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><text x="-0.0" y="72.9" font-size="15" font-family="Georgia,serif" font-weight="500" text-anchor="middle" fill="#26221d">HO</text><line x1="-32.9" y1="-19.0" x2="-43.4" y2="-25.1" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><text x="-58.5" y="-28.3" font-size="15" font-family="Georgia,serif" font-weight="500" text-anchor="middle" fill="#26221d">HO</text><line x1="180.1" y1="-32.0" x2="190.6" y2="-25.9" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><text x="205.6" y="-11.8" font-size="15" font-family="Georgia,serif" font-weight="500" text-anchor="middle" fill="#26221d">OH</text><line x1="180.1" y1="-70.0" x2="190.6" y2="-76.1" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><text x="205.6" y="-79.3" font-size="15" font-family="Georgia,serif" font-weight="500" text-anchor="middle" fill="#26221d">OH</text><text x="0.0" y="5.0" font-size="14" font-family="Georgia,serif" font-weight="400" text-anchor="middle" fill="#9a9088">A</text><text x="58.9" y="5.0" font-size="14" font-family="Georgia,serif" font-weight="400" text-anchor="middle" fill="#9a9088">C</text><text x="147.2" y="-46.0" font-size="14" font-family="Georgia,serif" font-weight="400" text-anchor="middle" fill="#9a9088">B</text></svg><div class="nm">siyanidin</div><div class="sub">2 hidroksil, yan yana<br>şelat kuruyor</div></div><div><svg xmlns="http://www.w3.org/2000/svg" viewBox="-92.5 -152.5 345.1 254.0" width="100%" style="max-width:345px" role="img"><circle cx="200.6" cy="-51.0" r="30.0" fill="#e8d9c0" opacity="0.85"/><circle cx="58.9" cy="-34.0" r="12.0" fill="#faf6ef" opacity="1.0"/><line x1="29.4" y1="-17.0" x2="0.0" y2="-34.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="0.0" y1="-34.0" x2="-29.4" y2="-17.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="-1.7" y1="-26.1" x2="-21.7" y2="-14.5" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="-29.4" y1="-17.0" x2="-29.4" y2="17.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="-29.4" y1="17.0" x2="-0.0" y2="34.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="-21.7" y1="14.5" x2="-1.7" y2="26.1" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="-0.0" y1="34.0" x2="29.4" y2="17.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="29.4" y1="17.0" x2="29.4" y2="-17.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="23.4" y1="11.6" x2="23.4" y2="-11.6" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="29.4" y1="-17.0" x2="58.9" y2="-34.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="58.9" y1="-34.0" x2="88.3" y2="-17.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="60.6" y1="-26.1" x2="80.6" y2="-14.5" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="88.3" y1="-17.0" x2="88.3" y2="17.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="88.3" y1="17.0" x2="58.9" y2="34.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="80.6" y1="14.5" x2="60.6" y2="26.1" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="58.9" y1="34.0" x2="29.4" y2="17.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><text x="58.9" y="-28.2" font-size="16" font-family="Georgia,serif" font-weight="500" text-anchor="middle" fill="#8a5a2b">O</text><text x="70.9" y="-39.3" font-size="13" font-family="Georgia,serif" font-weight="500" text-anchor="middle" fill="#8a5a2b">+</text><line x1="88.3" y1="-17.0" x2="117.8" y2="-34.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="176.6" y1="-68.0" x2="147.2" y2="-85.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="168.9" y1="-65.5" x2="148.9" y2="-77.1" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="147.2" y1="-85.0" x2="117.7" y2="-68.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="117.7" y1="-68.0" x2="117.7" y2="-34.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="123.7" y1="-62.6" x2="123.7" y2="-39.4" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="117.7" y1="-34.0" x2="147.2" y2="-17.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="147.2" y1="-17.0" x2="176.6" y2="-34.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="148.9" y1="-24.9" x2="168.9" y2="-36.5" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="176.6" y1="-34.0" x2="176.6" y2="-68.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="91.8" y1="19.0" x2="102.3" y2="25.1" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><text x="117.3" y="39.2" font-size="15" font-family="Georgia,serif" font-weight="500" text-anchor="middle" fill="#26221d">OH</text><line x1="-0.0" y1="38.0" x2="-0.0" y2="50.1" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><text x="-0.0" y="72.9" font-size="15" font-family="Georgia,serif" font-weight="500" text-anchor="middle" fill="#26221d">HO</text><line x1="-32.9" y1="-19.0" x2="-43.4" y2="-25.1" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><text x="-58.5" y="-28.3" font-size="15" font-family="Georgia,serif" font-weight="500" text-anchor="middle" fill="#26221d">HO</text><line x1="180.1" y1="-32.0" x2="190.6" y2="-25.9" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><text x="205.6" y="-11.8" font-size="15" font-family="Georgia,serif" font-weight="500" text-anchor="middle" fill="#26221d">OH</text><line x1="180.1" y1="-70.0" x2="190.6" y2="-76.1" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><text x="205.6" y="-79.3" font-size="15" font-family="Georgia,serif" font-weight="500" text-anchor="middle" fill="#26221d">OH</text><line x1="147.2" y1="-89.0" x2="147.2" y2="-101.1" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><text x="147.2" y="-113.1" font-size="15" font-family="Georgia,serif" font-weight="500" text-anchor="middle" fill="#26221d">OH</text><text x="0.0" y="5.0" font-size="14" font-family="Georgia,serif" font-weight="400" text-anchor="middle" fill="#9a9088">A</text><text x="58.9" y="5.0" font-size="14" font-family="Georgia,serif" font-weight="400" text-anchor="middle" fill="#9a9088">C</text><text x="147.2" y="-46.0" font-size="14" font-family="Georgia,serif" font-weight="400" text-anchor="middle" fill="#9a9088">B</text></svg><div class="nm">delfinidin</div><div class="sub">3 hidroksil<br>şelat kuruyor</div></div></div><figcaption>B halkasındaki hidroksil düzeni. Yalnız ortadaki ve sağdaki, yan yana duran bir çift hidroksile sahip — alüminyumu bağlayabilen tek düzen bu.</figcaption></figure>
+
+<p>Pelargonidinde tek bir hidroksil var, yalnız duruyor. Siyanidinde iki tane ve <em>yan yana</em>. Delfinidinde üç. Yan yana duran hidroksil çifti (kimyada buna kateşol düzeni deniyor) bu rehberin geri kalanını belirliyor: metal bağlayabilen tek düzen bu.</p>
+
+<p>Pratik karşılığı şu: turuncu-kırmızı tonların çoğu pelargonidin ağırlıklı ve şapa zayıf tepki veriyor. Mor, lacivert ve koyu kırmızı tonlar siyanidin ve delfinidin ağırlıklı, şapla belirgin biçimde daha iyi tutunuyor. Sardunyayla mor fesleğeni aynı kumaşta karşılaştırdığında bunu göreceksin.</p>
+
+<h3>Betalainler — begonvilin sürprizi</h3>
+
+<p>Kuşadası'nın her duvarını kaplayan begonvilin o yoğun moru antosiyanin <em>değil</em>. Begonvil Nyctaginaceae familyasından ve bu familya Caryophyllales takımında; bu takım antosiyanin üretmiyor, onun yerine <strong>betalain</strong> üretiyor. Pancarın kırmızısı, kaktüs meyvesinin fuşyası, semizotu ve horozibiğinin renkleri de aynı aileden.</p>
+
+<figure><svg xmlns="http://www.w3.org/2000/svg" viewBox="-105.4 -78.6 371.7 206.0" width="100%" style="max-width:372px" role="img"><circle cx="161.6" cy="82.8" r="11.0" fill="#faf6ef" opacity="1.0"/><circle cx="55.4" cy="31.0" r="11.0" fill="#faf6ef" opacity="1.0"/><circle cx="-53.4" cy="0.0" r="30.0" fill="#e8d9c0" opacity="0.85"/><line x1="29.4" y1="-17.0" x2="0.0" y2="-34.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="21.7" y1="-14.5" x2="1.7" y2="-26.1" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="0.0" y1="-34.0" x2="-29.4" y2="-17.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="-29.4" y1="-17.0" x2="-29.4" y2="17.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="-23.4" y1="-11.6" x2="-23.4" y2="11.6" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="-29.4" y1="17.0" x2="-0.0" y2="34.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="-0.0" y1="34.0" x2="29.4" y2="17.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="1.7" y1="26.1" x2="21.7" y2="14.5" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="29.4" y1="17.0" x2="29.4" y2="-17.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="-32.9" y1="-19.0" x2="-43.4" y2="-25.1" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><text x="-58.5" y="-28.3" font-size="15" font-family="Georgia,serif" font-weight="500" text-anchor="middle" fill="#26221d">HO</text><line x1="-32.9" y1="19.0" x2="-43.4" y2="25.1" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><text x="-58.5" y="39.2" font-size="15" font-family="Georgia,serif" font-weight="500" text-anchor="middle" fill="#26221d">HO</text><line x1="29.4" y1="-17.0" x2="55.4" y2="-31.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="29.4" y1="17.0" x2="55.4" y2="31.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="55.4" y1="-31.0" x2="81.4" y2="0.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="55.4" y1="31.0" x2="81.4" y2="0.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><text x="55.4" y="36.0" font-size="14" font-family="Georgia,serif" font-weight="500" text-anchor="middle" fill="#31564a">N</text><text x="61.4" y="-42.7" font-size="12" font-family="Georgia,serif" font-weight="500" text-anchor="middle" fill="#8a5a2b">COOH</text><line x1="55.4" y1="-31.0" x2="55.4" y2="-45.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="55.4" y1="31.0" x2="80.8" y2="42.8" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="80.8" y1="42.8" x2="106.2" y2="31.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="83.1" y1="47.8" x2="108.5" y2="36.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="106.2" y1="31.0" x2="131.6" y2="42.8" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="191.0" y1="31.8" x2="161.6" y2="14.8" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="161.6" y1="14.8" x2="132.1" y2="31.8" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="164.3" y1="19.6" x2="134.9" y2="36.6" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="132.1" y1="31.8" x2="132.1" y2="65.8" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="132.1" y1="65.8" x2="161.6" y2="82.8" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="161.6" y1="82.8" x2="191.0" y2="65.8" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="191.0" y1="65.8" x2="191.0" y2="31.8" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><text x="161.6" y="87.9" font-size="14" font-family="Georgia,serif" font-weight="500" text-anchor="middle" fill="#31564a">N</text><text x="225.0" y="30.2" font-size="12" font-family="Georgia,serif" font-weight="500" text-anchor="middle" fill="#8a5a2b">COOH</text><line x1="191.0" y1="31.8" x2="205.0" y2="27.8" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><text x="128.1" y="100.2" font-size="12" font-family="Georgia,serif" font-weight="500" text-anchor="middle" fill="#8a5a2b">COOH</text><line x1="132.1" y1="65.8" x2="130.1" y2="81.8" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/></svg><figcaption>Betanidin (basitleştirilmiş). Antosiyaninden en görünür farkı: yapıda <strong>azot</strong> var. Solda vurgulu kateşol grubu duruyor, ama molekülün geri kalanı bambaşka bir dünya.</figcaption></figure>
+
+<p>İşin ilginç yanı: bu iki pigment ailesi bugüne kadar hiçbir bitkide bir arada bulunmadı. Birini üreten öbürünü üretmiyor. Bitki âleminde renk üretmenin, ortak bir atadan sonra ayrılmış iki ayrı çözümü bunlar.</p>
+
+<p>Atölye için sonucu: begonvil bol, bedava ve çok iyi pigment veriyor — ama şapla ilişkisi antosiyaninlerinki gibi davranmıyor ve ışıkta belirgin hızlı soluyor. Kullan, ama ne olduğunu bilerek kullan.</p>
+
+<h3>Kurkumin — Işığın Rengi'yle bağ</h3>
+
+<p>Zerdeçalın sarısı. İki fenolik uç, ortada bir diketon köprü. pH değiştiğinde renk değiştirmesinin ve ışıkta bozunmasının sebebi bu konjuge yapı.</p>
+
+<figure><svg xmlns="http://www.w3.org/2000/svg" viewBox="-101.9 -86.8 449.7 154.5" width="100%" style="max-width:450px" role="img"><circle cx="133.4" cy="-47.0" r="11.0" fill="#faf6ef" opacity="1.0"/><circle cx="81.4" cy="-47.0" r="11.0" fill="#faf6ef" opacity="1.0"/><line x1="29.4" y1="-17.0" x2="0.0" y2="-34.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="21.7" y1="-14.5" x2="1.7" y2="-26.1" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="0.0" y1="-34.0" x2="-29.4" y2="-17.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="-29.4" y1="-17.0" x2="-29.4" y2="17.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="-23.4" y1="-11.6" x2="-23.4" y2="11.6" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="-29.4" y1="17.0" x2="-0.0" y2="34.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="-0.0" y1="34.0" x2="29.4" y2="17.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="1.7" y1="26.1" x2="21.7" y2="14.5" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="29.4" y1="17.0" x2="29.4" y2="-17.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="29.4" y1="-17.0" x2="55.4" y2="-2.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="26.7" y1="-12.2" x2="52.7" y2="2.8" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="55.4" y1="-2.0" x2="81.4" y2="-17.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="81.4" y1="-17.0" x2="107.4" y2="-2.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="107.4" y1="-2.0" x2="133.4" y2="-17.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="133.4" y1="-17.0" x2="159.3" y2="-2.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="159.3" y1="-2.0" x2="185.3" y2="-17.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="185.3" y1="-17.0" x2="211.3" y2="-2.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="182.6" y1="-12.2" x2="208.6" y2="2.8" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="81.4" y1="-17.0" x2="81.4" y2="-39.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="85.4" y1="-17.0" x2="85.4" y2="-39.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><text x="81.4" y="-41.6" font-size="15" font-family="Georgia,serif" font-weight="500" text-anchor="middle" fill="#8a5a2b">O</text><line x1="133.4" y1="-17.0" x2="133.4" y2="-39.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="137.4" y1="-17.0" x2="137.4" y2="-39.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><text x="133.4" y="-41.6" font-size="15" font-family="Georgia,serif" font-weight="500" text-anchor="middle" fill="#8a5a2b">O</text><line x1="270.2" y1="-36.0" x2="240.7" y2="-53.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="262.4" y1="-33.5" x2="242.4" y2="-45.1" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="240.7" y1="-53.0" x2="211.3" y2="-36.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="211.3" y1="-36.0" x2="211.3" y2="-2.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="217.3" y1="-30.6" x2="217.3" y2="-7.4" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="211.3" y1="-2.0" x2="240.7" y2="15.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="240.7" y1="15.0" x2="270.2" y2="-2.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="242.4" y1="7.1" x2="262.4" y2="-4.5" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="270.2" y1="-2.0" x2="270.2" y2="-36.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="-32.9" y1="19.0" x2="-43.4" y2="25.1" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><text x="-58.5" y="39.2" font-size="15" font-family="Georgia,serif" font-weight="500" text-anchor="middle" fill="#26221d">HO</text><line x1="-32.9" y1="-19.0" x2="-45.6" y2="-26.3" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><text x="-61.9" y="-30.3" font-size="15" font-family="Georgia,serif" font-weight="500" text-anchor="middle" fill="#26221d">MeO</text><line x1="273.6" y1="-38.0" x2="284.1" y2="-44.1" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><text x="299.2" y="-47.4" font-size="15" font-family="Georgia,serif" font-weight="500" text-anchor="middle" fill="#26221d">OH</text><line x1="273.6" y1="0.0" x2="289.5" y2="9.2" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><text x="307.8" y="25.2" font-size="15" font-family="Georgia,serif" font-weight="500" text-anchor="middle" fill="#26221d">OMe</text></svg><figcaption>Kurkumin. Işığın Rengi atölyesinde anthotype yüzeyini kuran molekül. Her iki uçtaki fenolik hidroksiller, burada anlatacağın mordan kimyasının da parçası.</figcaption></figure>
+
+<h3>Klorofil ve karotenoidler — neden işe yaramıyor</h3>
+
+<p>Yeşil yaprakları tokmakla bastığında güzel bir yeşil iz alıyorsun ama birkaç haftada kahverengiye dönüyor. Sebebi basit: klorofil ve karotenoidler suda değil yağda çözünüyor, üstelik kloroplast zarlarının içine gömülüler. Suyla taşınan bir aktarımda lifin içine düzgün giremiyorlar; çoğu yüzeyde kalıyor. Ayrıca klorofil ışık altında zaten hızla parçalanan bir molekül — bitkinin içinde bile sürekli yenileniyor.</p>
+
+<p>Yani yeşili kalıcı bir renk olarak satma. Yaprakları form için kullan, renk için değil.</p>
+
+<hr>
+
+<h2 id="b2">Bölüm iki</h2>
+<p class="h2sub">Pigment kumaşa nasıl geçiyor</p>
+
+<p>Bitki hücresinde renk çoğunlukla <strong>vakuolde</strong> duruyor — hücrenin ortasındaki büyük sıvı kese. Tokmağın baskısı hücre çeperini ve vakuol zarını mekanik olarak parçalıyor, içerideki renkli sıvı serbest kalıyor ve basıncın etkisiyle kumaşın lifleri arasına giriyor. Oradan kılcal etkiyle liflerin yüzeyine yayılıyor.</p>
+
+<figure><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 250" width="100%" role="img"><rect x="156" y="16" width="86" height="26" rx="3" fill="#4a4038"/><rect x="192" y="40" width="14" height="30" rx="3" fill="#8a6b4a"/><line x1="169" y1="76" x2="169" y2="88" stroke="#8a5a2b" stroke-width="1.6" stroke-linecap="round"/><path d="M169,94 l-3.5,-7 l7,0 z" fill="#8a5a2b"/><line x1="199" y1="76" x2="199" y2="88" stroke="#8a5a2b" stroke-width="1.6" stroke-linecap="round"/><path d="M199,94 l-3.5,-7 l7,0 z" fill="#8a5a2b"/><line x1="229" y1="76" x2="229" y2="88" stroke="#8a5a2b" stroke-width="1.6" stroke-linecap="round"/><path d="M229,94 l-3.5,-7 l7,0 z" fill="#8a5a2b"/><rect x="74" y="102" width="250" height="15" fill="#fdfbf6" stroke="#e3dbcd" stroke-width="1.2"/><line x1="324" y1="109.5" x2="346" y2="109.5" stroke="#e3dbcd"/><text x="352" y="114.0" font-size="12.5" font-family="system-ui,-apple-system,sans-serif" fill="#9a9088">kumaş — üst kat</text><rect x="74" y="117" width="250" height="13" fill="#b3628f" stroke="#e3dbcd" stroke-width="1.2"/><line x1="324" y1="123.5" x2="346" y2="123.5" stroke="#e3dbcd"/><text x="352" y="128.0" font-size="12.5" font-family="system-ui,-apple-system,sans-serif" fill="#9a9088">çiçek</text><rect x="74" y="130" width="250" height="15" fill="#fdfbf6" stroke="#e3dbcd" stroke-width="1.2"/><line x1="324" y1="137.5" x2="346" y2="137.5" stroke="#e3dbcd"/><text x="352" y="142.0" font-size="12.5" font-family="system-ui,-apple-system,sans-serif" fill="#9a9088">kumaş — alt kat</text><rect x="74" y="145" width="250" height="24" fill="#d8c7ae" stroke="#e3dbcd" stroke-width="1.2"/><line x1="324" y1="157.0" x2="346" y2="157.0" stroke="#e3dbcd"/><text x="352" y="161.5" font-size="12.5" font-family="system-ui,-apple-system,sans-serif" fill="#9a9088">tahta / fayans</text><text x="74" y="212" font-size="13" font-family="system-ui,-apple-system,sans-serif" font-weight="600" fill="#26221d">baskı anı</text><text x="74" y="231" font-size="12.5" font-family="system-ui,-apple-system,sans-serif" fill="#9a9088">hücre çeperi ve vakuol parçalanıyor</text><circle cx="596" cy="116" r="74" fill="#fdfbf6" stroke="#e3dbcd" stroke-width="1.4"/><line x1="474" y1="122" x2="516" y2="118" stroke="#e3dbcd" stroke-dasharray="4 3"/><line x1="570.6" y1="54" x2="621.4" y2="54" stroke="#cdbfa8" stroke-width="8" stroke-linecap="round"/><line x1="543.0" y1="75" x2="649.0" y2="75" stroke="#cdbfa8" stroke-width="8" stroke-linecap="round"/><line x1="532.1" y1="96" x2="659.9" y2="96" stroke="#cdbfa8" stroke-width="8" stroke-linecap="round"/><line x1="529.0" y1="117" x2="663.0" y2="117" stroke="#cdbfa8" stroke-width="8" stroke-linecap="round"/><line x1="532.7" y1="138" x2="659.3" y2="138" stroke="#cdbfa8" stroke-width="8" stroke-linecap="round"/><line x1="544.6" y1="159" x2="647.4" y2="159" stroke="#cdbfa8" stroke-width="8" stroke-linecap="round"/><line x1="576.2" y1="180" x2="615.8" y2="180" stroke="#cdbfa8" stroke-width="8" stroke-linecap="round"/><circle cx="566" cy="84" r="5.5" fill="#b3628f" opacity="0.9"/><circle cx="590" cy="104" r="5.5" fill="#b3628f" opacity="0.9"/><circle cx="620" cy="86" r="5.5" fill="#b3628f" opacity="0.9"/><circle cx="572" cy="126" r="5.5" fill="#b3628f" opacity="0.9"/><circle cx="606" cy="146" r="5.5" fill="#b3628f" opacity="0.9"/><circle cx="632" cy="124" r="5.5" fill="#b3628f" opacity="0.9"/><circle cx="556" cy="144" r="5.5" fill="#b3628f" opacity="0.9"/><circle cx="638" cy="102" r="5.5" fill="#b3628f" opacity="0.9"/><text x="596" y="214" font-size="12.5" font-family="system-ui,-apple-system,sans-serif" text-anchor="middle" fill="#9a9088">pigment lifler arasında —</text><text x="596" y="231" font-size="12.5" font-family="system-ui,-apple-system,sans-serif" text-anchor="middle" fill="#9a9088">henüz bağlanmadı</text></svg><figcaption>Tokmağın baskısı hücre çeperini ve vakuol zarını mekanik olarak parçalıyor. Serbest kalan renkli sıvı basınçla lifler arasına giriyor.</figcaption></figure>
+
+<p>Buradan üç pratik sonuç çıkıyor:</p>
+
+<ul>
+<li><strong>Sulu doku iyi, kuru doku kötü.</strong> Taşıyacak sıvısı olmayan bir yaprak pigmentini bırakamıyor.</li>
+<li><strong>İnce doku iyi, kalın doku kötü.</strong> Kalın bir taç yaprak basıncı yayıyor ve kumaşı yırtıyor; ince olan formunu koruyor.</li>
+<li><strong>Dik iniş iyi, kaydırma kötü.</strong> Yana sürtünce sıvı lifin içine değil yüzeyinde yana yayılıyor, form kayboluyor, leke kalıyor.</li>
+</ul>
+
+<p>Ama bu aşamada pigment kumaşa <em>bağlanmış</em> değil, sadece orada bulunuyor. Bağlanma bir sonraki bölümün konusu ve baskının kalıcı olup olmayacağını belirleyen şey tam olarak o.</p>
+
+<hr>
+
+<h2 id="b3">Bölüm üç</h2>
+<p class="h2sub">Mordan: dört halkalı zincir</p>
+
+<p>Pigmenti kumaşa aktarmak kolay kısım. Zor olan orada tutmak. Tutunma dört halkalı bir zincir olarak kuruluyor:</p>
+
+<figure><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 208" width="100%" role="img"><rect x="10" y="48" width="164" height="60" rx="4" fill="#f1e9dc" stroke="#e3dbcd" stroke-width="1.4"/><text x="92.0" y="74" font-size="14.5" font-family="system-ui,-apple-system,sans-serif" font-weight="600" text-anchor="middle" fill="#26221d">PAMUK</text><text x="92.0" y="93" font-size="12.5" font-family="system-ui,-apple-system,sans-serif" text-anchor="middle" fill="#9a9088">selüloz</text><line x1="179" y1="78.0" x2="205" y2="78.0" stroke="#8a5a2b" stroke-width="1.6"/><path d="M205,78.0 l-6,-4 l0,8 z" fill="#8a5a2b"/><text x="192.0" y="36" font-size="11.5" font-family="system-ui,-apple-system,sans-serif" text-anchor="middle" fill="#8a5a2b">hidrojen bağı</text><rect x="216" y="48" width="164" height="60" rx="4" fill="#fff" stroke="#e3dbcd" stroke-width="1.4"/><text x="298.0" y="74" font-size="14.5" font-family="system-ui,-apple-system,sans-serif" font-weight="600" text-anchor="middle" fill="#26221d">TANEN</text><text x="298.0" y="93" font-size="12.5" font-family="system-ui,-apple-system,sans-serif" text-anchor="middle" fill="#9a9088">polifenol</text><line x1="385" y1="78.0" x2="411" y2="78.0" stroke="#8a5a2b" stroke-width="1.6"/><path d="M411,78.0 l-6,-4 l0,8 z" fill="#8a5a2b"/><text x="398.0" y="36" font-size="11.5" font-family="system-ui,-apple-system,sans-serif" text-anchor="middle" fill="#8a5a2b">şelat</text><rect x="422" y="48" width="164" height="60" rx="4" fill="#fff" stroke="#e3dbcd" stroke-width="1.4"/><text x="504.0" y="74" font-size="14.5" font-family="system-ui,-apple-system,sans-serif" font-weight="600" text-anchor="middle" fill="#26221d">ALÜMİNYUM</text><text x="504.0" y="93" font-size="12.5" font-family="system-ui,-apple-system,sans-serif" text-anchor="middle" fill="#9a9088">üç artı yüklü</text><line x1="591" y1="78.0" x2="617" y2="78.0" stroke="#8a5a2b" stroke-width="1.6"/><path d="M617,78.0 l-6,-4 l0,8 z" fill="#8a5a2b"/><text x="604.0" y="36" font-size="11.5" font-family="system-ui,-apple-system,sans-serif" text-anchor="middle" fill="#8a5a2b">şelat</text><rect x="628" y="48" width="164" height="60" rx="4" fill="#f1e9dc" stroke="#e3dbcd" stroke-width="1.4"/><text x="710.0" y="74" font-size="14.5" font-family="system-ui,-apple-system,sans-serif" font-weight="600" text-anchor="middle" fill="#26221d">PİGMENT</text><text x="710.0" y="93" font-size="12.5" font-family="system-ui,-apple-system,sans-serif" text-anchor="middle" fill="#9a9088">antosiyanin</text><rect x="216" y="148" width="164" height="42" rx="4" fill="#eef3f0" stroke="#e3dbcd" stroke-width="1.4" stroke-dasharray="5 4"/><text x="298.0" y="166" font-size="14" font-family="system-ui,-apple-system,sans-serif" font-weight="600" text-anchor="middle" fill="#31564a">İPEK</text><text x="298.0" y="182" font-size="12" font-family="system-ui,-apple-system,sans-serif" text-anchor="middle" fill="#9a9088">protein — tanen gerekmez</text><path d="M384,169.0 C454,169.0 464.0,148 504.0,115" fill="none" stroke="#31564a" stroke-width="1.6" stroke-dasharray="5 4"/><path d="M504.0,115 l-4.5,7 l9,0 z" fill="#31564a"/></svg><figcaption>Bağlanma zinciri. Pamukta dört halka gerekiyor; ipekte tanen atlanıyor, çünkü protein lifi alüminyumu doğrudan bağlıyor.</figcaption></figure>
+
+<p>Zincirin her halkası ayrı bir kimyayla bağlanıyor. Sırayla bakalım.</p>
+
+<h3>Alüminyum neden bağlanıyor: şelat</h3>
+
+<p>Alüminyum iyonu üç artı yüklü ve küçük. Bu ikisi bir arada onu güçlü bir <strong>Lewis asidi</strong> yapıyor: elektron çifti verebilecek atomlara, özellikle oksijene, hevesle bağlanıyor. Buna koordinasyon bağı deniyor.</p>
+
+<p>Ama tek bir oksijene bağlanmak yeterince sağlam değil; su ortamında kolayca kopuyor. Sağlam olan, <em>aynı molekülün iki oksijenine birden</em> bağlanmak. O zaman ortaya kapalı bir halka çıkıyor ve halka açılmak için iki bağın aynı anda kopmasını gerektirdiği için çok daha kararlı oluyor. Buna <strong>şelat</strong> deniyor — kelime Yunanca kıskaç anlamına gelen <em>chele</em>'den geliyor.</p>
+
+<figure><svg xmlns="http://www.w3.org/2000/svg" viewBox="-51.4 -57.0 208.7 114.0" width="100%" style="max-width:209px" role="img"><circle cx="57.4" cy="23.0" r="11.0" fill="#faf6ef" opacity="1.0"/><circle cx="57.4" cy="-23.0" r="11.0" fill="#faf6ef" opacity="1.0"/><polygon points="29.4,-17.0 57.4,-23.0 105.4,0.0 57.4,23.0 29.4,17.0" fill="#e8d9c0" opacity="0.75"/><line x1="29.4" y1="-17.0" x2="0.0" y2="-34.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="21.7" y1="-14.5" x2="1.7" y2="-26.1" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="0.0" y1="-34.0" x2="-29.4" y2="-17.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="-29.4" y1="-17.0" x2="-29.4" y2="17.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="-23.4" y1="-11.6" x2="-23.4" y2="11.6" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="-29.4" y1="17.0" x2="-0.0" y2="34.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="-0.0" y1="34.0" x2="29.4" y2="17.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="1.7" y1="26.1" x2="21.7" y2="14.5" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="29.4" y1="17.0" x2="29.4" y2="-17.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="29.4" y1="-17.0" x2="57.4" y2="-23.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="29.4" y1="17.0" x2="57.4" y2="23.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><text x="57.4" y="-17.6" font-size="15" font-family="Georgia,serif" font-weight="500" text-anchor="middle" fill="#8a5a2b">O</text><text x="57.4" y="28.4" font-size="15" font-family="Georgia,serif" font-weight="500" text-anchor="middle" fill="#8a5a2b">O</text><line x1="67.4" y1="-18.2" x2="87.4" y2="-8.6" stroke="#26221d" stroke-dasharray="4 3" stroke-width="1.9" stroke-linecap="round"/><line x1="67.4" y1="18.2" x2="87.4" y2="8.6" stroke="#26221d" stroke-dasharray="4 3" stroke-width="1.9" stroke-linecap="round"/><circle cx="105.4" cy="0.0" r="18.0" fill="#dfe7e3" opacity="1.0"/><text x="105.4" y="5.8" font-size="16" font-family="Georgia,serif" font-weight="500" text-anchor="middle" fill="#31564a">Al</text><text x="126.4" y="-11.0" font-size="11" font-family="Georgia,serif" font-weight="500" text-anchor="middle" fill="#26221d">3+</text></svg><figcaption>Kateşol düzeni: yan yana iki hidroksil, alüminyumu beş üyeli bir halka içine kıstırıyor. Kesikli çizgiler koordinasyon bağları. Bu geometri bütün rehberin kilidi.</figcaption></figure>
+
+<p>Şimdi Bölüm bir'e dön: siyanidin ve delfinidinin B halkasında vurguladığımız şey tam olarak bu düzendi. Pelargonidinde tek hidroksil var, kıskaç kurulamıyor. Aynı sebeple begonvilin betalaini de kısmen bağlanıyor ama antosiyaninler kadar temiz değil.</p>
+
+<div class="note">
+<span class="tag">Kapanan halka</span>
+<p>Ortancanın asidik toprakta maviye dönmesinin sebebi de bu. Asidik toprakta alüminyum çözünür hale geliyor, bitki onu alıyor, alüminyum çanak yapraklardaki delfinidin türevine aynı kıskaçla bağlanıyor ve molekülün ışığı soğurma biçimi değişiyor — kırmızı-mor maviye kayıyor.</p>
+<p>Yani atölyede kumaşa yaptığın şeyle, ortancanın toprakta yaptığı şey aynı kimya. Işığın Rengi'nde bu hikâyenin pH ayağını anlatıyorsun. Burada metal ayağını anlatıyorsun. Seri kendi içinde kapanıyor.</p>
+</div>
+
+<h3>Neden pamuk zor, ipek kolay</h3>
+
+<p>Alüminyumun life bağlanması da aynı kurala tabi: tutunacak oksijen ya da azot arıyor.</p>
+
+<div class="pair">
+<div><svg xmlns="http://www.w3.org/2000/svg" viewBox="-22.0 -47.1 208.4 147.2" width="100%" style="max-width:208px" role="img"><circle cx="53.0" cy="0.0" r="20.0" fill="#e8d9c0" opacity="0.5"/><circle cx="138.4" cy="52.1" r="26.0" fill="#e8d9c0" opacity="0.8"/><circle cx="79.5" cy="-13.9" r="11.0" fill="#faf6ef" opacity="1.0"/><circle cx="53.0" cy="0.0" r="11.0" fill="#faf6ef" opacity="1.0"/><line x1="0.0" y1="0.0" x2="26.5" y2="14.1" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="26.5" y1="14.1" x2="53.0" y2="0.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="53.0" y1="0.0" x2="79.5" y2="14.1" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="79.5" y1="14.1" x2="106.0" y2="0.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="106.0" y1="0.0" x2="132.4" y2="14.1" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="132.4" y1="14.1" x2="158.9" y2="0.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><text x="53.0" y="5.0" font-size="14" font-family="Georgia,serif" font-weight="500" text-anchor="middle" fill="#31564a">N</text><line x1="79.5" y1="14.1" x2="79.5" y2="-4.9" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="83.5" y1="14.1" x2="83.5" y2="-4.9" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><text x="79.5" y="-8.9" font-size="14" font-family="Georgia,serif" font-weight="500" text-anchor="middle" fill="#8a5a2b">O</text><line x1="132.4" y1="14.1" x2="132.4" y2="44.1" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><text x="136.4" y="61.1" font-size="14" font-family="Georgia,serif" font-weight="500" text-anchor="middle" fill="#8a5a2b">COOH</text></svg><div class="nm">İpek ve yün — protein</div></div>
+<div><svg xmlns="http://www.w3.org/2000/svg" viewBox="-37.6 -47.4 211.2 155.0" width="100%" style="max-width:211px" role="img"><circle cx="116.0" cy="-15.0" r="10.0" fill="#faf6ef" opacity="1.0"/><circle cx="76.0" cy="0.0" r="10.0" fill="#faf6ef" opacity="1.0"/><circle cx="26.0" cy="-15.0" r="10.0" fill="#faf6ef" opacity="1.0"/><line x1="0.0" y1="0.0" x2="26.0" y2="-15.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="26.0" y1="-15.0" x2="52.0" y2="0.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="52.0" y1="0.0" x2="52.0" y2="30.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="52.0" y1="30.0" x2="26.0" y2="45.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="26.0" y1="45.0" x2="0.0" y2="30.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="0.0" y1="30.0" x2="0.0" y2="0.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><text x="26.0" y="-10.3" font-size="13" font-family="Georgia,serif" font-weight="500" text-anchor="middle" fill="#8a5a2b">O</text><line x1="52.0" y1="0.0" x2="76.0" y2="0.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><text x="76.0" y="4.7" font-size="13" font-family="Georgia,serif" font-weight="500" text-anchor="middle" fill="#8a5a2b">O</text><line x1="90.0" y1="0.0" x2="116.0" y2="-15.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="116.0" y1="-15.0" x2="142.0" y2="0.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="142.0" y1="0.0" x2="142.0" y2="30.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="142.0" y1="30.0" x2="116.0" y2="45.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="116.0" y1="45.0" x2="90.0" y2="30.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="90.0" y1="30.0" x2="90.0" y2="0.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><text x="116.0" y="-10.3" font-size="13" font-family="Georgia,serif" font-weight="500" text-anchor="middle" fill="#8a5a2b">O</text><line x1="52.0" y1="30.0" x2="52.0" y2="52.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><text x="52.0" y="65.3" font-size="12" font-family="Georgia,serif" font-weight="500" text-anchor="middle" fill="#26221d">OH</text><line x1="26.0" y1="45.0" x2="26.0" y2="67.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><text x="26.0" y="80.3" font-size="12" font-family="Georgia,serif" font-weight="500" text-anchor="middle" fill="#26221d">OH</text><line x1="0.0" y1="30.0" x2="-6.0" y2="52.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><text x="-6.0" y="65.3" font-size="12" font-family="Georgia,serif" font-weight="500" text-anchor="middle" fill="#26221d">OH</text><line x1="142.0" y1="30.0" x2="142.0" y2="52.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><text x="142.0" y="65.3" font-size="12" font-family="Georgia,serif" font-weight="500" text-anchor="middle" fill="#26221d">OH</text><line x1="116.0" y1="45.0" x2="116.0" y2="67.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><text x="116.0" y="80.3" font-size="12" font-family="Georgia,serif" font-weight="500" text-anchor="middle" fill="#26221d">OH</text><line x1="90.0" y1="30.0" x2="84.0" y2="52.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><text x="84.0" y="65.3" font-size="12" font-family="Georgia,serif" font-weight="500" text-anchor="middle" fill="#26221d">OH</text></svg><div class="nm">Pamuk ve keten — selüloz</div></div>
+</div>
+<p class="figcap">Solda protein omurgası: amid azotu, karbonil oksijeni ve yan zincirlerdeki karboksil grupları alüminyum için hazır bağlanma noktaları. Sağda selüloz: sadece alkol hidroksilleri — zayıf verici, üstelik çoğu lifin kendi iç hidrojen bağlarına kilitli.</p>
+
+<p>Sonuç: ipeği tek adımda şaplıyorsun ve tutuyor. Pamuğu şapladığında alüminyumun büyük kısmı ilk durulamada gidiyor. Aradaki fark ihmal edilebilir değil; baskının bir hafta sonra durup durmamasını belirleyen şey bu.</p>
+
+<h3>Tanen: eksik halka</h3>
+
+<p>Tanenler bitkilerin herbivora, mantara ve bakteriye karşı ürettiği polifenoller. Sert çayı içtiğinde ağzını kurutan, olmamış hurmayı yenmez yapan buruk his bunlardan geliyor — tanen ağzındaki tükürük proteinlerine bağlanıp onları çöktürüyor, kayganlık kayboluyor.</p>
+
+<figure><svg xmlns="http://www.w3.org/2000/svg" viewBox="-107.9 -69.8 215.4 171.2" width="100%" style="max-width:215px" role="img"><circle cx="55.4" cy="0.0" r="30.0" fill="#e8d9c0" opacity="0.85"/><line x1="29.4" y1="-17.0" x2="0.0" y2="-34.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="21.7" y1="-14.5" x2="1.7" y2="-26.1" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="0.0" y1="-34.0" x2="-29.4" y2="-17.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="-29.4" y1="-17.0" x2="-29.4" y2="17.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="-23.4" y1="-11.6" x2="-23.4" y2="11.6" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="-29.4" y1="17.0" x2="-0.0" y2="34.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="-0.0" y1="34.0" x2="29.4" y2="17.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="1.7" y1="26.1" x2="21.7" y2="14.5" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="29.4" y1="17.0" x2="29.4" y2="-17.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="32.9" y1="-19.0" x2="43.4" y2="-25.1" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><text x="58.5" y="-28.3" font-size="15" font-family="Georgia,serif" font-weight="500" text-anchor="middle" fill="#26221d">OH</text><line x1="32.9" y1="19.0" x2="43.4" y2="25.1" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><text x="58.5" y="39.2" font-size="15" font-family="Georgia,serif" font-weight="500" text-anchor="middle" fill="#26221d">OH</text><line x1="-0.0" y1="38.0" x2="-0.0" y2="50.1" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><text x="-0.0" y="72.9" font-size="15" font-family="Georgia,serif" font-weight="500" text-anchor="middle" fill="#26221d">OH</text><line x1="-32.9" y1="-19.0" x2="-45.6" y2="-26.3" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><text x="-61.9" y="-30.3" font-size="15" font-family="Georgia,serif" font-weight="500" text-anchor="middle" fill="#26221d">HOOC</text></svg><figcaption>Gallik asit, hidrolize olabilen tanenlerin yapı taşı. Vurgulu kısım yine aynı kateşol düzeni — ve bu molekülün üzerinde birden fazla var.</figcaption></figure>
+
+<p>Tanen iki işi birden yapıyor:</p>
+
+<ul>
+<li><strong>Selüloz tarafı:</strong> tanen molekülleri pamuğa hidrojen bağları ve yüzey etkileşimleriyle yüksek ilgiyle yapışıyor. Çayın pamukta çıkmayan leke bırakmasının sebebi bu; sen bu "kusuru" araç olarak kullanıyorsun.</li>
+<li><strong>Alüminyum tarafı:</strong> üzerindeki çok sayıda kateşol ve galloil grubu, alüminyumun aradığı kıskaç düzenini hazır sunuyor.</li>
+</ul>
+
+<p>Yani tanen bir adaptör: bir yüzü life, öbür yüzü metale. Pamuğa, ipeğin doğuştan sahip olduğu şeyi sonradan kazandırıyorsun.</p>
+
+<hr>
+
+<h2 id="b4">Bölüm dört</h2>
+<p class="h2sub">Su, pH ve alüminyumun kaderi</p>
+
+<p>Kuşadası'nın suyu sert ve bu senin işini doğrudan etkiliyor. Ama sorun sandığın yerde değil: kirecin kendisinden çok, kireçli suyun <strong>bazik</strong> olması sorun yaratıyor.</p>
+
+<p>Şap suda çözününce alüminyum iyonu serbest kalmıyor — etrafını su molekülleriyle sarıyor ve bu su moleküllerinden proton kopararak ortamı asitleştiriyor. Taze bir şap çözeltisinin kendiliğinden asidik olmasının sebebi bu. Ortamda bikarbonat varsa (sert suyun tanımı bu) o asitliği nötrleyip süreci ileri itiyor ve alüminyum çözünmez alüminyum hidroksite dönüşüp çöküyor.</p>
+
+<figure><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 186" width="100%" role="img"><rect x="62.0" y="62" width="203.7" height="34" fill="#dfe9e2"/><text x="163.9" y="84" font-size="13" font-family="system-ui,-apple-system,sans-serif" font-weight="600" text-anchor="middle" fill="#31564a">alüminyum çözünmüş</text><rect x="265.7" y="62" width="239.1" height="34" fill="#f3ddd2"/><text x="385.3" y="84" font-size="13" font-family="system-ui,-apple-system,sans-serif" font-weight="600" text-anchor="middle" fill="#a2482c">alüminyum hidroksit çöküyor</text><rect x="504.9" y="62" width="177.1" height="34" fill="#e9e4da"/><text x="593.4" y="84" font-size="13" font-family="system-ui,-apple-system,sans-serif" font-weight="600" text-anchor="middle" fill="#9a9088">alüminat</text><rect x="62" y="62" width="620" height="34" fill="none" stroke="#e3dbcd"/><line x1="62.0" y1="96" x2="62.0" y2="102" stroke="#9a9088"/><text x="62.0" y="117" font-size="11.5" font-family="system-ui,-apple-system,sans-serif" text-anchor="middle" fill="#9a9088">0</text><line x1="150.6" y1="96" x2="150.6" y2="102" stroke="#9a9088"/><text x="150.6" y="117" font-size="11.5" font-family="system-ui,-apple-system,sans-serif" text-anchor="middle" fill="#9a9088">2</text><line x1="239.1" y1="96" x2="239.1" y2="102" stroke="#9a9088"/><text x="239.1" y="117" font-size="11.5" font-family="system-ui,-apple-system,sans-serif" text-anchor="middle" fill="#9a9088">4</text><line x1="327.7" y1="96" x2="327.7" y2="102" stroke="#9a9088"/><text x="327.7" y="117" font-size="11.5" font-family="system-ui,-apple-system,sans-serif" text-anchor="middle" fill="#9a9088">6</text><line x1="416.3" y1="96" x2="416.3" y2="102" stroke="#9a9088"/><text x="416.3" y="117" font-size="11.5" font-family="system-ui,-apple-system,sans-serif" text-anchor="middle" fill="#9a9088">8</text><line x1="504.9" y1="96" x2="504.9" y2="102" stroke="#9a9088"/><text x="504.9" y="117" font-size="11.5" font-family="system-ui,-apple-system,sans-serif" text-anchor="middle" fill="#9a9088">10</text><line x1="593.4" y1="96" x2="593.4" y2="102" stroke="#9a9088"/><text x="593.4" y="117" font-size="11.5" font-family="system-ui,-apple-system,sans-serif" text-anchor="middle" fill="#9a9088">12</text><line x1="682.0" y1="96" x2="682.0" y2="102" stroke="#9a9088"/><text x="682.0" y="117" font-size="11.5" font-family="system-ui,-apple-system,sans-serif" text-anchor="middle" fill="#9a9088">14</text><text x="54" y="84" font-size="12" font-family="system-ui,-apple-system,sans-serif" text-anchor="end" fill="#9a9088">pH</text><line x1="239.1" y1="36" x2="239.1" y2="59" stroke="#31564a" stroke-width="1.6"/><path d="M239.1,60 l-4.5,-7 l9,0 z" fill="#31564a"/><text x="239.1" y="28" font-size="12.5" font-family="system-ui,-apple-system,sans-serif" font-weight="600" text-anchor="middle" fill="#31564a">hedef 3,5–4,5</text><line x1="407.4" y1="130" x2="407.4" y2="152" stroke="#a2482c" stroke-width="1.6"/><path d="M407.4,129 l-4.5,7 l9,0 z" fill="#a2482c"/><text x="407.4" y="168" font-size="12.5" font-family="system-ui,-apple-system,sans-serif" font-weight="600" text-anchor="middle" fill="#a2482c">sert musluk suyu</text></svg><figcaption>Alüminyumun sudaki kaderi pH'ya bağlı. Asidik tarafta çözünmüş halde ve iş görüyor; nötre yaklaştıkça alüminyum hidroksit olarak çöküyor ve mordan işlevini yitiriyor. Sert musluk suyu tam da yanlış bölgede duruyor.</figcaption></figure>
+
+<p>Çöken alüminyum hidroksit kumaşa bağlanmıyor, üzerine ince beyaz bir toz olarak oturuyor. Kumaş şaplanmış <em>gibi</em> görünüyor ama kanca dikilmemiş oluyor. İlk durulamada ya da ilk yıkamada gidiyor ve sen sebebini anlamıyorsun.</p>
+
+<div class="note">
+<span class="tag">Tek kontrol</span>
+<p>Doğru şap banyosu <strong>berraktır</strong>. Bulanık, sütlü ya da dibinde beyaz çökelti varsa suyun onu bozmuş demektir. Bu tek gözlem, pH kâğıdın olmasa bile yeterli bilgi veriyor.</p>
+</div>
+
+<h4>Üç çözüm, en kolaydan</h4>
+<ol class="steps">
+<li><strong>Market suyu kullan.</strong> Banyo topu topu iki litre. Beş litrelik bir şişe su bu sorunu tamamen ortadan kaldırıyor ve maliyeti yok denecek kadar az.</li>
+<li><strong>Limon tuzu ekle.</strong> Musluk suyunda ısrar edeceksen, çözelti berraklaşana kadar limon tuzu at. İki litre için yaklaşık bir çay kaşığı. Sirke de olur ama zayıf ve kokuyor.</li>
+<li><strong>Kaynat ve dinlendir.</strong> Kaynatmak geçici sertliği çöktürüyor. Soğut, dibe çökeni bırak, üstteki suyu al. Kısmi çözüm ama bedava.</li>
+</ol>
+
+<p>Hedef aralık pH 3,5-4,5. pH kâğıdı aktarda ya da akvaryum dükkânında çok ucuz; ölçebilmek tahmin etmekten iyi ve atölyede masaya koyacağın güzel bir ayrıntı.</p>
+
+<p>Aynı sertlik ön yıkamayı da etkiliyor: sabun kalsiyumla birleşip kumaşın üzerinde çözünmeyen bir kalıntı bırakıyor, o kalıntı da pigmentin life girmesini engelliyor. Ön yıkamaya bir kaşık çamaşır sodası eklemek bunu çözüyor.</p>
+
+<hr>
+
+<h2 id="b5">Bölüm beş</h2>
+<p class="h2sub">Uygulama yönergesi</p>
+
+<p>Aşağıdaki ölçüler iki litrelik banyo içindir; bu miktar 25×25 cm'lik on-on iki kareye ya da yarım metrelik bir parçaya yeter.</p>
+
+<h3>Adım 0 — Haşıl sökme</h3>
+
+<p>Yeni kumaşta fabrika çıkışı bir apre var; bu kaplama pigmentin de mordanın da life girmesini engelliyor. Kaynatarak sökmek makinede yıkamaktan daha etkili.</p>
+
+<ul>
+<li>Paslanmaz çelik ya da emaye tencere. <strong>Alüminyum tencere kullanma</strong> — soda tencereyi aşındırır.</li>
+<li>2 litre su, 1 yemek kaşığı çamaşır sodası, bir fış bulaşık deterjanı.</li>
+<li>Kısık ateşte 45-60 dakika, arada karıştır.</li>
+<li>Su sararsa ya da kahverengileşirse iyi işaret: apre ve doğal mumlar çıkıyor.</li>
+<li>Bol durula. Kalan soda bazik olduğu için sonraki asidik şap banyosunu bozar.</li>
+</ul>
+
+<p><strong>Eski çarşafa gerek yok.</strong> Yıllarca yıkanmış pamuğun apresi çoktan gitmiş. Normal bir yıkama yeter. Yumuşatıcı hiçbir aşamada kullanılmıyor.</p>
+
+<h3>Adım 1 — Tanen banyosu (yalnız pamuk ve keten)</h3>
+
+<ul>
+<li>2 litre kaynar su.</li>
+<li>Bir avuç sumak <em>ya da</em> beş poşet siyah çay <em>ya da</em> bir tutam öğütülmüş mazı.</li>
+<li>30 dakika demle, süz, elin dayanacak sıcaklığa getir.</li>
+<li>Kumaşı tamamen batır, 45-60 dakika beklet. Sıcak tutabilirsen daha iyi.</li>
+<li>Sık, <strong>durulama</strong>, kurut.</li>
+</ul>
+
+<p>Kumaş bej olacak. Bu bir hata değil, tanenin kendi rengi.</p>
+
+<h3>Adım 2 — Şap banyosu</h3>
+
+<ul>
+<li>2 litre ılık su — market suyu, ya da limon tuzuyla asitlendirilmiş musluk suyu.</li>
+<li><strong>30 g şap</strong> (yaklaşık iki dolu yemek kaşığı).</li>
+<li>Tamamen çözülene kadar karıştır. Çözelti <strong>berrak olmalı</strong>.</li>
+<li>60-80 °C'ye getirip 30-45 dakika tut. Kaynatma gerekmez. Sıcak yapmak soğuk beklemekten hem hızlı hem daha etkili.</li>
+<li>Ocaktan al, kumaş banyonun içinde soğusun.</li>
+<li>Sık, <strong>durulama</strong>, kurut.</li>
+</ul>
+
+<p>İpekte tanen adımını atla, doğrudan şaba geç.</p>
+
+<h3>Pratik alternatifler</h3>
+
+<table>
+<thead><tr><th>Yöntem</th><th>Ne kazandırıyor</th><th>Bedeli</th></tr></thead>
+<tbody>
+<tr><td><strong>Toplu hazırlık</strong></td><td>İki metre kumaşı kesmeden önce bir kerede şaplıyorsun. Kuru mordanlı kumaş aylarca bozulmuyor. Bu işi üç ayda bir yapıyorsun.</td><td>Yok. En büyük kazanç bu.</td></tr>
+<tr><td><strong>Alüminyum asetat</strong></td><td>Selüloza çok daha iyi bağlanıyor, <strong>tanen adımı tamamen kalkıyor</strong>. Kumaş beyaz kalıyor. Kumaş ağırlığının %5-8'i.</td><td>Pahalı, bulunması zor.</td></tr>
+<tr><td><strong>Soya sütü</strong></td><td>Süt proteini life yerleşip ona protein lifi gibi bağlanma noktaları kazandırıyor. 1 ölçü süt : 4 ölçü su, 1 saat, kurut, 2-3 kez tekrarla.</td><td>Kullanmadan önce bir hafta olgunlaşma süresi.</td></tr>
+<tr><td><strong>Hiç mordan yok</strong></td><td>Hazırlık sıfır. Çerçeveye girecek, yıkanmayacak bir parça için doğrudan güneş almadığı sürece aylarca duruyor.</td><td>Yıkanamaz, daha hızlı solar.</td></tr>
+</tbody>
+</table>
+
+<div class="note">
+<span class="tag">Bloke olma</span>
+<p>İlk atölyeni mordansız yapabilirsin. Katılımcı o kumaşı yıkamayacak. Şap, baskıyı <em>yıkanabilir</em> kılmak için gerekli — güzel olması için değil. Bu adımın seni geciktirmesine izin verme; atölyeyi yap, mordanlamayı ikinciye kadar oturt.</p>
+</div>
+
+<hr>
+
+<h2 id="b6">Bölüm altı</h2>
+<p class="h2sub">Baskı tekniği</p>
+
+<ol class="steps">
+<li><strong>Sert zemin.</strong> Tahta kesme tahtası, seramik fayans ya da mermer. Yumuşak zemin baskının enerjisini yutuyor ve pigment çıkmıyor.</li>
+<li><strong>Yerleştirme.</strong> Kumaşı zemine ser, çiçeği <em>yüzü aşağı bakacak şekilde</em> kumaşın üstüne koy. Kalın kısımları — çanak, sap, göbek — makasla önceden al, yoksa kumaşı yırtıyorlar.</li>
+<li><strong>Örtme.</strong> Kumaşı üstüne katla ya da yağlı kâğıtla ört. Katlamak daha iyi: simetrik bir çift baskı çıkıyor ve bu kompozisyon olarak çok işe yarıyor.</li>
+<li><strong>Baskı.</strong> Düz yüzlü tokmağı <strong>dik</strong> indir. Yana kaydırma. Dik iniş formu verir, sürtme leke verir.</li>
+<li><strong>Tarama.</strong> Çiçeğin her santimini sistemli geç. Pigment çıktığında sesin tonu değişiyor — kulakla takip edilebiliyor ve bunu katılımcıya söylemek hoşlarına gidiyor.</li>
+<li><strong>Temizleme.</strong> Aç, bitki artıklarını cımbızla ya da tırnakla al. Kalan doku küflenip lekeye dönüşüyor.</li>
+</ol>
+
+<div class="note warn">
+<span class="tag">Ses</span>
+<p>Bu atölye ses çıkarıyor. Tahtanın altına katlanmış havlu ya da yoga matı koy, masaya kalın örtü ser; bu ses seviyesini kafenin kabul edeceği yere indiriyor. Mekana önceden haber ver ve tercihen sabah saatinde yap.</p>
+</div>
+
+<hr>
+
+<h2 id="b7">Bölüm yedi</h2>
+<p class="h2sub">Sabitleme, ve demirin iki yüzü</p>
+
+<ul>
+<li>Karanlıkta 24-48 saat kurut.</li>
+<li>Araya bez koyup orta ısıda ütüle. Isı bağlanmayı güçlendiriyor.</li>
+<li>Şaplı kumaşta, çok seyreltik bir şap sonrası banyosu tonu bir miktar sabitliyor.</li>
+</ul>
+
+<h3>Demir</h3>
+
+<p>Tanenle işlenmiş kumaş demirle karşılaştığında koyu gri-siyaha dönüyor. Bu tesadüf değil: demir iyonu da tıpkı alüminyum gibi kateşol düzenine bağlanıyor, ama oluşan kompleks ışığı çok daha geniş bir aralıkta soğuruyor ve neredeyse siyah görünüyor.</p>
+
+<figure><svg xmlns="http://www.w3.org/2000/svg" viewBox="-111.4 -71.8 268.6 173.2" width="100%" style="max-width:269px" role="img"><circle cx="57.4" cy="23.0" r="11.0" fill="#faf6ef" opacity="1.0"/><circle cx="57.4" cy="-23.0" r="11.0" fill="#faf6ef" opacity="1.0"/><polygon points="29.4,-17.0 57.4,-23.0 105.4,0.0 57.4,23.0 29.4,17.0" fill="#e8d9c0" opacity="0.75"/><line x1="29.4" y1="-17.0" x2="0.0" y2="-34.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="21.7" y1="-14.5" x2="1.7" y2="-26.1" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="0.0" y1="-34.0" x2="-29.4" y2="-17.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="-29.4" y1="-17.0" x2="-29.4" y2="17.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="-23.4" y1="-11.6" x2="-23.4" y2="11.6" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="-29.4" y1="17.0" x2="-0.0" y2="34.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="-0.0" y1="34.0" x2="29.4" y2="17.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="1.7" y1="26.1" x2="21.7" y2="14.5" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="29.4" y1="17.0" x2="29.4" y2="-17.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="29.4" y1="-17.0" x2="57.4" y2="-23.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><line x1="29.4" y1="17.0" x2="57.4" y2="23.0" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><text x="57.4" y="-17.6" font-size="15" font-family="Georgia,serif" font-weight="500" text-anchor="middle" fill="#8a5a2b">O</text><text x="57.4" y="28.4" font-size="15" font-family="Georgia,serif" font-weight="500" text-anchor="middle" fill="#8a5a2b">O</text><line x1="67.4" y1="-18.2" x2="87.4" y2="-8.6" stroke="#26221d" stroke-dasharray="4 3" stroke-width="1.9" stroke-linecap="round"/><line x1="67.4" y1="18.2" x2="87.4" y2="8.6" stroke="#26221d" stroke-dasharray="4 3" stroke-width="1.9" stroke-linecap="round"/><circle cx="105.4" cy="0.0" r="18.0" fill="#3a3330" opacity="1.0"/><text x="105.4" y="5.8" font-size="16" font-family="Georgia,serif" font-weight="500" text-anchor="middle" fill="#f2ece2">Fe</text><text x="126.4" y="-11.0" font-size="11" font-family="Georgia,serif" font-weight="500" text-anchor="middle" fill="#26221d">3+</text><line x1="-0.0" y1="38.0" x2="-0.0" y2="50.1" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><text x="-0.0" y="72.9" font-size="15" font-family="Georgia,serif" font-weight="500" text-anchor="middle" fill="#26221d">HO</text><line x1="-32.9" y1="-19.0" x2="-47.7" y2="-27.5" stroke="#26221d" stroke-width="1.9" stroke-linecap="round"/><text x="-65.4" y="-32.3" font-size="15" font-family="Georgia,serif" font-weight="500" text-anchor="middle" fill="#26221d">HOOC</text></svg><figcaption>Demir-gallat kompleksi. Aynı kıskaç, farklı metal, bambaşka renk. Bu, orta çağ el yazmalarının yazıldığı mazı mürekkebinin ta kendisi.</figcaption></figure>
+
+<p>İki sonucu var. Kötüsü: demir tencerede çalışırsan ya da paslı bir yüzeye değdirirsen baskın istemeden kararıyor. İyisi: bunu bilinçli yaparsan elinde yeni bir araç oluyor. Paslı suya batırılmış bir fırçayla bir köşeye dokunmak, tanenli kumaşta derin bir siyah açıyor. Atölyenin ileri seviye versiyonu için sakla — ve masada mürekkep hikâyesini anlat, çok iyi karşılık alıyor.</p>
+
+<hr>
+
+<h2 id="b8">Bölüm sekiz</h2>
+<p class="h2sub">Bitki tablosu</p>
+
+<table>
+<thead><tr><th>Bitki</th><th>Pigment ailesi</th><th>Şapa tepki</th><th>Not</th></tr></thead>
+<tbody>
+<tr><td>Mor fesleğen</td><td>Antosiyanin (siyanidin)</td><td>İyi</td><td>Atölyenin en güvenilir bitkisi.</td></tr>
+<tr><td>Dut, böğürtlen</td><td>Antosiyanin (siyanidin)</td><td>İyi</td><td>Çok sulu, güçlü aktarım. Lekeye dikkat.</td></tr>
+<tr><td>Hatmi, ebegümeci</td><td>Antosiyanin (delfinidin)</td><td>Çok iyi</td><td>Koyu mor çeşitlerini seç.</td></tr>
+<tr><td>Hercai menekşe</td><td>Antosiyanin</td><td>Çok iyi</td><td>İnce taç yaprak, form mükemmel çıkıyor.</td></tr>
+<tr><td>Koyu kırmızı gül</td><td>Antosiyanin (siyanidin)</td><td>İyi</td><td>Yalnız taç yaprakları kullan.</td></tr>
+<tr><td>Sardunya</td><td>Antosiyanin (pelargonidin)</td><td>Zayıf</td><td>Kateşol düzeni yok. Karşılaştırma için birebir.</td></tr>
+<tr><td>Begonvil</td><td><strong>Betalain</strong></td><td>Farklı</td><td>Bol ve bedava, ama hızlı solar. Kuşadası'nın kendi hikâyesi.</td></tr>
+<tr><td>Lantana</td><td>Karışık</td><td>Orta</td><td>Renk çeşitliliği için iyi.</td></tr>
+<tr><td>Kadife çiçeği</td><td>Karotenoid ağırlıklı</td><td>Zayıf</td><td>Sarılar en hızlı solan grup.</td></tr>
+<tr><td>Mor süs eriği yaprağı</td><td>Antosiyanin</td><td>İyi</td><td>Yaprak formu ve rengi bir arada.</td></tr>
+<tr><td>Eğrelti</td><td>Klorofil</td><td>Yok</td><td>Renk için değil, form için.</td></tr>
+</tbody>
+</table>
+
+<div class="note warn">
+<span class="tag">Kullanma</span>
+<p><strong>Zakkum</strong> (<em>Nerium oleander</em>) Kuşadası'nda her yerde ve bütün kısımları çok zehirli. Sütü ele, göze, ağza değmemeli. Masaya hiç getirme; uzaktan anlatılacak bir bitki olarak kalsın. Süt salgılayan diğer süs bitkilerinden de uzak dur.</p>
+</div>
+
+<hr>
+
+<h2 id="b9">Bölüm dokuz</h2>
+<p class="h2sub">Solma: kusur değil, konu</p>
+
+<p>Antosiyaninler ışık, ısı, oksijen ve pH karşısında kararsız. Flavilyum katyonu suyla tepkimeye girip renksiz forma geçebiliyor, ışık altında halka açılabiliyor, oksijen bozunmayı hızlandırıyor. Betalainler daha da kırılgan. Bunlar engellenemez; yavaşlatılabilir.</p>
+
+<p>Mordan bu bozunmayı iki yoldan yavaşlatıyor: molekülü life bağlayarak hareketini kısıtlıyor, ve şelat oluşumu molekülün elektron dağılımını değiştirerek bazı bozunma yollarını zorlaştırıyor. Ama durdurmuyor.</p>
+
+<p>Atölyede bunu saklamak yerine konu yapmak, hem daha dürüst hem daha ilgi çekici. Söylenecek doğru şey şu: bir bitkinin rengi zaten geçici bir durum — mevsime, toprağa, ışığa, bitkinin kendi kimyasına göre değişiyor. Kumaşta da öyle davranması tutarlı. Bu yüzden kalıcı bir baskı değil, <strong>değişimi izlenebilir bir kayıt</strong> üretiyorsun.</p>
+
+<p>Pratik tavsiye: camlı çerçeve, doğrudan güneş almayan duvar. Defter kabı da iyi. Yıkanacak bir tekstil olarak satma.</p>
+
+<hr>
+
+<h2 id="b10">Bölüm on</h2>
+<p class="h2sub">Ev denemesi matrisi</p>
+
+<p>Atölyeyi satmadan önce cevaplaman gereken tek soru: hangi kumaş, hangi mordan, hangi bitki bir hafta sonra hâlâ duruyor? Aşağıdaki test bunu üç akşamda çözüyor ve yan ürün olarak en iyi Instagram gönderini üretiyor.</p>
+
+<h4>Birinci akşam — kumaşları hazırla</h4>
+<p>Eski pamuklu çarşafı 12 adet 15×15 cm kareye kes. Üç gruba ayır:</p>
+
+<table>
+<thead><tr><th>Grup</th><th>İşlem</th><th>Beklenti</th></tr></thead>
+<tbody>
+<tr><td>A</td><td>Mordan yok (kontrol)</td><td>En hızlı solan</td></tr>
+<tr><td>B</td><td>Yalnız şap</td><td>Orta — pamukta şap tek başına zayıf</td></tr>
+<tr><td>C</td><td>Tanen + şap</td><td>En dayanıklı, ama zemin bej</td></tr>
+</tbody>
+</table>
+
+<p>Varsa üç ipek kare ekle, yalnız şapla. İpeğin pamuğa farkını görmek için.</p>
+
+<h4>İkinci akşam — bas</h4>
+<p>Her karede <em>aynı</em> dört bitkiyi kullan: mor fesleğen, sardunya, dut, begonvil. Bu dörtlü tesadüfen seçilmedi — biri siyanidin, biri pelargonidin, biri yoğun siyanidin, biri betalain. Tek değişken mordan olduğu için sonuçlar okunabilir oluyor.</p>
+<p>Her karenin arkasına kurşun kalemle yaz: grup, tarih, bitkiler.</p>
+
+<h4>Üçüncü akşam ve sonrası — ışık testi</h4>
+<p>Her karenin yarısını kartonla kapat, güney cepheli bir pencereye koy. On gün sonra kartonu kaldır.</p>
+
+<p>Üç şey birden elde ediyorsun: doğru reçete, masada anlatacağın gerçek veri, ve yarısı solmuş bir karenin fotoğrafı. O fotoğraf "solar" demekten kat kat etkili.</p>
+
+<h4>Tahminler — kendi testini önceden kaydet</h4>
+<ul>
+<li>Mor fesleğen C grubunda A grubundan belirgin daha iyi duracak.</li>
+<li>Sardunya gruplar arasında az fark gösterecek: pelargonidinin kateşol düzeni yok.</li>
+<li>Begonvil bütün gruplarda hızlı solacak: betalain, farklı kimya.</li>
+<li>İpek kareler pamuktan iyi olacak.</li>
+</ul>
+<p>Tahminleri önceden yazıp sonra karşılaştırmak, atölyenin anlatısını sağlamlaştırıyor. Tutmayan tahmin de iyi: onu anlatmak, tutan tahminden daha ilgi çekici oluyor.</p>
+
+<hr>
+
+<h2 id="b11">Bölüm on bir</h2>
+<p class="h2sub">Masada ne anlatılır</p>
+
+<p>Doksan dakikada bu rehberin tamamını anlatamazsın, anlatmamalısın da. Beş cümle yeterli; gerisi soru geldikçe açılır.</p>
+
+<ol class="steps">
+<li><strong>Açılış.</strong> "Işığın Rengi'nde güneşin günler süren sabrıyla çalışmıştık. Bugün tersi: sonuç saniyeler içinde çıkacak. Ama aynı soruyu soruyoruz — bir bitki kendi görüntüsünü nasıl bırakır?"</li>
+<li><strong>Baskı anından hemen sonra.</strong> "Şu anda yaptığınız şey, hücre çeperlerini parçalayıp vakuoldeki renkli sıvıyı lifin arasına sokmak. Pigment kumaşın içinde artık — ama henüz bağlanmadı."</li>
+<li><strong>Mordan.</strong> "Kumaşı önceden şapladım. Şap, pigmentle lif arasına giren bir kanca. Alüminyum, molekülün yan yana duran iki oksijenini birden yakalıyor ve bir kıskaç kuruyor."</li>
+<li><strong>Bağlantı cümlesi.</strong> "Bu, ortancanın toprakta alüminyum bulunca maviye dönmesiyle aynı kimya. Bahçedeki o renk değişimi, şu an elinizde olan şey."</li>
+<li><strong>Kapanış.</strong> "Bunlar solacak. Ama bir bitkinin rengi zaten geçici bir durum. Elinizde kalıcı bir baskı değil, değişimi izlenebilir bir kayıt var — o yüzden arkasına tarihi yazıyoruz."</li>
+</ol>
+
+<p>Kimyayı anlatırken formül yazma, tahtaya bir şey çizme. Elindeki çiçeği gösterip "bu molekülün şurasında iki tane oksijen var, yan yana" demek yeterli. Derinliği, soranlara verdiğin ikinci cevap taşıyor — birinci cevap değil.</p>
+
+<hr>
+
+<h2 id="kaynaklar">Kaynaklar ve güvenlik</h2>
+
+<h4>Kaynaklar</h4>
+<ol class="refs">
+<li>Cardon, D. (2007). <em>Natural Dyes: Sources, Tradition, Technology and Science.</em> Archetype Publications. — Doğal boya ve mordan kimyasının başvuru kitabı.</li>
+<li>Cavalcanti, R. N., Santos, D. T., Meireles, M. A. A. (2011). Non-thermal stabilization mechanisms of anthocyanins in model and food systems — An overview. <em>Food Research International</em>, 44(2), 499-509.</li>
+<li>Herschel, J. F. W. (1842). On the action of the rays of the spectrum on vegetable colours. <em>Philosophical Transactions of the Royal Society of London</em>, 132, 181-214. — Işığın Rengi'nin tarihsel kaynağı.</li>
+<li>Ortancada alüminyum ve renk değişimi ile betalain-antosiyanin karşılıklı dışlanması üzerine literatür geniştir; siteye taşımadan önce güncel bir derleme seçip künyesini kendin doğrula.</li>
+</ol>
+
+<h4>Güvenlik</h4>
+<ul>
+<li><strong>Şap</strong> düşük toksisiteli — turşuda ve tıraş taşında kullanılıyor. Yine de uzun temasta eldiven tak, göze kaçırma, içme.</li>
+<li><strong>Çamaşır sodası</strong> bazik ve tahriş edici. Eldivenle çalış, alüminyum kapla temas ettirme.</li>
+<li><strong>Zakkum</strong> atölyeye girmez.</li>
+<li><strong>Tokmak</strong> kullanılan bir masada çocuk yok. Bu atölye yetişkinler için.</li>
+<li>Bitki toplarken <strong>milli park sınırları içinde toplama yapma</strong>; izin gerektiriyor. Bahçe ve yol kenarı bitkileriyle çalış.</li>
+</ul>
+
+<p class="end">Güneşimden Kaç · Kuşadası · elcineksi.com</p>
+
+</div>
+</body>
+</html>
