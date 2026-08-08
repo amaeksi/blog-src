@@ -10,4 +10,7 @@
       </url>
     {{ end }}
   {{ end }}
+  <url>
+    <loc>{{ `gunesimden-kac/cicek-baskisi/` | absURL }}</loc>
+  </url>
 </urlset>

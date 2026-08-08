@@ -1,14 +1,153 @@
 {{ define "main" }}
   <section class="project-hero">
     <div class="project-hero__content">
-      <p class="eyebrow">Kuşadası · yaratıcı doğa atölyeleri</p>
-      <h1>Güneşimden Kaç</h1>
+      <p class="eyebrow">Güneşimden Kaç</p>
+      <p class="project-hero__position">Doğayı anlamanın deneysel yolları.</p>
+      <p class="project-hero__descriptor">Yetişkinler için yaratıcı doğa laboratuvarı</p>
+      <h1>Doğada bildiğimizi sandığımız şeylere daha yakından bakıyoruz.</h1>
+      <p class="lead">Güneşimden Kaç, bilimsel merakı doğa gözlemi ve yaratıcı deneylerle buluşturan yetişkin buluşmaları. Her buluşmada tek bir sorunun peşine düşüyor; bir rengin, yaprağın, ışığın ya da mevsimin bize ne anlatabileceğine birlikte bakıyoruz.</p>
+      <p class="project-hero__byline">Bir biyoloğun tasarladığı yetişkin buluşmaları.</p>
       <p class="project-hero__line">Güneş, bitkiler ve zamanın birlikte ürettiği izler.</p>
-      <p class="lead">Bir biyoloğun yönettiği yaratıcı doğa laboratuvarı.</p>
+      <div class="button-row">
+        <a class="button button--turmeric" href="{{ `/gunesimden-kac/isigin-rengi/` | relURL }}">Işığın Rengi'ni keşfet <span aria-hidden="true">→</span></a>
+        <a class="text-link" href="{{ `/gunesimden-kac/saha-notlari/` | relURL }}">Saha Notları <span aria-hidden="true">→</span></a>
+      </div>
     </div>
   </section>
-  <article class="page-shell prose project-prose">
-    {{ .Content }}
-    <p><a class="button button--turmeric" href="{{ `/gunesimden-kac/isigin-rengi/` | relURL }}">Işığın Rengi atölyesini keşfet <span aria-hidden="true">→</span></a></p>
-  </article>
+  <nav class="nature-local-nav" aria-label="Güneşimden Kaç bölümleri">
+    <a aria-current="page" href="{{ `/gunesimden-kac/` | relURL }}">Güneşimden Kaç</a>
+    <a href="{{ `/gunesimden-kac/isigin-rengi/` | relURL }}">Işığın Rengi</a>
+    <a href="{{ `/gunesimden-kac/saha-notlari/` | relURL }}">Saha Notları</a>
+  </nav>
+
+  <section class="nature-section nature-section--intro">
+    <div class="nature-section__heading">
+      <p class="eyebrow">Bir doğa laboratuvarı</p>
+      <h2>Bakmakla görmek arasındaki mesafeyi biraz kısaltıyoruz.</h2>
+    </div>
+    <div class="nature-section__body prose">
+      <p>Bir yaprağın kenarı, bir meyvenin moru, güneşte kalan bir rengin yavaşça değişmesi… Doğada sıradan görünen ayrıntılar doğru soruyla küçük bir araştırmaya dönüşebilir. Güneşimden Kaç'ta bilimsel bilgiyi bir sunum olarak aktarmak yerine onu gözlem, karşılaştırma ve yaratıcı üretimin içine yerleştiriyoruz.</p>
+      <p>Amaç tek bir “doğru sonuç” üretmek değil. Aynı malzemenin neden farklı davranabildiğini fark etmek, beklenmeyen sonucu okuyabilmek ve bulunduğumuz yerin canlılarına biraz daha dikkatli bakmak.</p>
+    </div>
+  </section>
+
+  <section class="nature-section nature-section--cream">
+    <div class="nature-section__heading">
+      <p class="eyebrow">Dört parçalı bir sistem</p>
+      <h2>Bir buluşma nasıl ilerler?</h2>
+    </div>
+    <div class="nature-steps" aria-label="Bir buluşmanın dört parçası">
+      <article><p class="nature-step__number">01</p><h3>Bir soru</h3><p>Her buluşma cevapla değil merakla başlar.</p></article>
+      <article><p class="nature-step__number">02</p><h3>Bir doğa olayı</h3><p>Renk, ışık, bitki dokusu, mevsim veya başka bir doğal süreç üzerine kısa bir bilimsel çerçeve kurarız.</p></article>
+      <article><p class="nature-step__number">03</p><h3>Bir deney</h3><p>Olayı kendi gözümüzle görebileceğimiz, karşılaştırabileceğimiz bir deney yaparız.</p></article>
+      <article><p class="nature-step__number">04</p><h3>Bir kişisel iz</h3><p>Baskı, çizim, renk kartı veya gözlem notu… Her deney sonunda araştırmadan kalan somut bir iz olur.</p></article>
+    </div>
+  </section>
+
+  <section class="nature-section">
+    <div class="nature-section__heading">
+      <p class="eyebrow">İlk buluşma</p>
+      <h2>I · Işığın Rengi</h2>
+    </div>
+    <article class="nature-feature-card">
+      <div>
+        <p class="nature-feature-card__label">Araştırma sorusu</p>
+        <h3>Bir renk güneşte ne kadar süre aynı kalır?</h3>
+      </div>
+      <div>
+        <p>Zerdeçalın güçlü sarısından yola çıkarak ışığın bir pigmenti zaman içinde nasıl değiştirdiğini araştırıyoruz. Bitkilerle kompozisyon kuruyor, güneş ve gölge arasındaki farkı gözlemliyor ve rengin çevresindeki koşullara nasıl cevap verdiğine bakıyoruz.</p>
+        <p class="nature-feature-card__note">Anthotype bu buluşmanın amacı değil, gözlem araçlarından biri.</p>
+        <a class="text-link" href="{{ `/gunesimden-kac/isigin-rengi/` | relURL }}">Işığın Rengi'ni keşfet <span aria-hidden="true">→</span></a>
+      </div>
+    </article>
+  </section>
+
+  <section class="nature-section">
+    <div class="nature-section__heading">
+      <p class="eyebrow">İkinci buluşma</p>
+      <h2>II · Çiçek Baskısı</h2>
+    </div>
+    <article class="nature-feature-card">
+      <div>
+        <p class="nature-feature-card__label">Araştırma sorusu</p>
+        <h3>Bir bitki kendi görüntüsünü kumaşa nasıl bırakır?</h3>
+      </div>
+      <div>
+        <p>Çiçekleri ve yaprakları kumaşa aktarırken yalnızca ortaya çıkan forma değil, rengin nereden geldiğine ve lifte neden kaldığına bakıyoruz. Pigment aileleri, bitki hücresi, kumaş lifleri ve metal iyonları aynı deneyin farklı parçalarına dönüşüyor.</p>
+        <p>Tokmağın bıraktığı iz birkaç saniyede ortaya çıkıyor; o izin arkasındaki biyoloji ve kimya ise hikâyenin asıl kısmı.</p>
+        <p>Işığın Rengi'nde güneşin günler süren etkisini izliyoruz. Çiçek Baskısı'nda ise bitkinin izi saniyeler içinde ortaya çıkıyor. İki buluşmanın ortak sorusu aynı: bir bitki kendi rengini ve biçimini başka bir yüzeye nasıl bırakır?</p>
+        <a class="text-link" href="{{ `/gunesimden-kac/cicek-baskisi/` | relURL }}">Çiçek Baskısı'nı keşfet <span aria-hidden="true">→</span></a>
+      </div>
+    </article>
+  </section>
+
+  <section class="nature-section nature-section--two-column">
+    <div class="nature-section__heading"><p class="eyebrow">Atölyenin değeri</p><h2>Teknik birkaç cümle. Hikâye çok daha uzun.</h2></div>
+    <div class="nature-section__body prose">
+      <p>Bir çiçeğin kumaşa nasıl vurulacağını göstermek kolay. Güneşimden Kaç'ta asıl merak ettiğimiz, o anda bitkinin hücresinde ne olduğu, pigmentin kumaşa nasıl geçtiği, bazı renklerin neden kaldığı ve bazılarının neden değiştiği. Fiziksel deney ile bilimsel açıklamayı aynı masada buluşturuyoruz.</p>
+    </div>
+  </section>
+
+  <section class="nature-notes-cta" aria-labelledby="cicek-baskisi-cta-title">
+    <div>
+      <h2 id="cicek-baskisi-cta-title">Bu araştırmayı masada birlikte yapmak ister misin?</h2>
+      <p>Yeni Güneşimden Kaç buluşmalarını ve Çiçek Baskısı tarihlerini ilk sen öğren.</p>
+    </div>
+    <div>{{ partial "registration-cta.html" (dict "label" "Yeni buluşmaları ilk sen öğren") }}</div>
+  </section>
+
+  <section class="nature-section nature-section--questions">
+    <div class="nature-section__heading">
+      <p class="eyebrow">Araştırma yol haritası</p>
+      <h2>Sıradaki sorular</h2>
+      <p>Her Güneşimden Kaç buluşması bir sorudan doğuyor. Şu anda masanın üzerinde duran sorulardan bazıları:</p>
+    </div>
+    <div class="nature-question-grid">
+      <article><p class="nature-question__number">III · Morun Haritası</p><p class="nature-question__label">Araştırma sorusu</p><h3>Bir meyve neden mor görünür?</h3><p>Yaban mersininin morunu, antosiyaninleri ve rengin çevresindeki kimyaya verdiği cevabı araştıran bir soru.</p></article>
+      <article><p class="nature-question__number">IV · Kırılgan Kırmızı</p><p class="nature-question__label">Araştırma sorusu</p><h3>Parlak bir renk neden kaybolur?</h3><p>Pancarın güçlü kırmızısından yola çıkarak renk yoğunluğu ile renk kararlılığının neden aynı şey olmadığını araştıran bir soru.</p></article>
+      <article><p class="nature-question__number">V · Aynı Bitki, Başka Renk</p><p class="nature-question__label">Araştırma sorusu</p><h3>Bir bitkinin rengi nerede yaşar?</h3><p>Yaprak, çiçek, kabuk ve meyvenin farklı kısımlarındaki pigmentlerin aynı bitki hakkında farklı renk hikâyeleri anlatabileceği bir araştırma.</p></article>
+      <article><p class="nature-question__number">VI · Güneşin Ölçüsü</p><p class="nature-question__label">Araştırma sorusu</p><h3>Aynı güneş her gün aynı mı?</h3><p>Işık süresi, gölge, mevsim ve mikroiklimin bir doğal pigment üzerindeki etkisini düşünmeye açılan bir araştırma.</p></article>
+      <article><p class="nature-question__number">VII · Solan Şeyler Atlası</p><p class="nature-question__label">Araştırma sorusu</p><h3>Doğada kalıcılık ne demektir?</h3><p>Renklerin, yaprakların ve başka doğal izlerin zaman içinde değişmesini bir kayıp değil gözlem konusu olarak ele alan bir araştırma.</p></article>
+    </div>
+  </section>
+
+  <section class="nature-section nature-section--cream">
+    <div class="nature-section__heading">
+      <p class="eyebrow">Güneşimden Kaç'ın açık notları</p>
+      <h2>Saha Notları</h2>
+      <p>Doğada karşılaştığımız küçük soruların bilimsel arka planına kısa bakışlar.</p>
+    </div>
+    <div class="field-note-card-grid">
+      {{ $notes := sort (where site.RegularPages "Type" "fieldnote") "Weight" "asc" }}
+      {{ range $notes }}
+        <article class="field-note-card">
+          <p class="field-note-card__number">Saha Notu {{ printf "%02d" .Weight }}</p>
+          <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+          <p class="field-note-card__question">{{ .Description }}</p>
+          <p>{{ .Params.card_summary }}</p>
+          {{ with .Params.keywords }}<p class="field-note-card__keywords">{{ delimit . " · " }}</p>{{ end }}
+          <a class="text-link" href="{{ .RelPermalink }}">Notu oku <span aria-hidden="true">→</span></a>
+        </article>
+      {{ end }}
+    </div>
+    <p class="nature-section__action"><a class="text-link" href="{{ `/gunesimden-kac/saha-notlari/` | relURL }}">Tüm Saha Notlarını oku <span aria-hidden="true">→</span></a></p>
+  </section>
+
+  <section class="nature-section nature-section--two-column">
+    <div class="nature-section__heading"><p class="eyebrow">Deneyimin değeri</p><h2>Tariften daha fazlası</h2></div>
+    <div class="nature-section__body prose">
+      <p>Bir pigmenti kâğıda sürmek kolay olabilir. Hangi koşulun neyi değiştirdiğini görmek, karşılaştırmak ve sonucu okumak deneyimin asıl kısmı. Güneşimden Kaç buluşmalarında malzemeler, karşılaştırmalı örnekler ve bilimsel çerçeve hazırlanmış gelir; sen gözlemlemeye, üretmeye ve soru sormaya odaklanırsın.</p>
+      <p>Buradan yalnızca yaptığın bir işle değil; yaşadığın yerde yeniden fark edebileceğin bir ayrıntı ve peşine düşebileceğin yeni bir soruyla ayrılmanı istiyorum.</p>
+    </div>
+  </section>
+
+  <section class="nature-section nature-section--care">
+    <div class="nature-section__heading"><p class="eyebrow">Etik bir dikkat</p><h2>Doğaya dikkatle yaklaşmak</h2></div>
+    <div class="nature-section__body prose">
+      <p>Doğada bulunan her bitki toplanacak malzeme değildir; “doğal” olan her şey de otomatik olarak zararsız değildir. Güneşimden Kaç'ta yalnızca güvenli ve tanımlanmış materyallerle çalışıyor, bitkileri deney malzemesi olmanın ötesinde canlıların parçası olarak ele alıyoruz.</p>
+      <p>Gözlem önce gelir. Toplamak gerekiyorsa ihtiyaç kadarını almak, korunan alanları ve türleri gözetmek deneyimin bir parçasıdır.</p>
+    </div>
+  </section>
+
+  {{ partial "gunesimden-kac-notlari.html" . }}
 {{ end }}
